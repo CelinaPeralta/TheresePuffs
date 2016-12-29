@@ -7,7 +7,10 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
 
-        //lol
+        //could use gui builder
+        //need a battle panel**
+        //main panel (options, exit, stats)
+        //upgrade panel
 
     }
 

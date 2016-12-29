@@ -3,7 +3,7 @@
  */
 public class Character {
 
-    public Character(){
+    public Character() {
 
         //lol
     }
