@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-
 import java.util.ArrayList;
 import java.util.Random;
 
-=======
-import java.util.ArrayList;
-import java.util.Random;
->>>>>>> origin/master
 
 /**
  * Created by celinaperalta on 12/29/16.
@@ -15,13 +9,13 @@ import java.util.Random;
 
 public class Battle_Controller {
 
-    //lol
+    //Possibly make character list
     final ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
 
     public Battle_Controller() {
 
         VILLAIN_NAMES.add("Cenpai");
-        VILLAIN_NAMES.add("Danny The Dinosaur");
+        VILLAIN_NAMES.add("");
 
 
     }
