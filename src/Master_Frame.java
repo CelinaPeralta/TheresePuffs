@@ -1,10 +1,12 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by celinaperalta on 12/30/16.
  */
 public class Master_Frame extends JFrame {
 
+    Main_Panel main_panel = new Main_Panel();
 
     public Master_Frame() {
 
@@ -12,6 +14,10 @@ public class Master_Frame extends JFrame {
         //main panel (options, exit, stats)
         //upgrade panel
         //ugh how to switch between panels lol
+    	setTitle("Danny the Dinosaur");
+		setSize(500, 500);
+        setLayout(new BorderLayout());
+        add(main_panel, BorderLayout.SOUTH);
 
     }
 
