@@ -6,12 +6,12 @@ import java.util.Random;
 public class Battle_Controller {
 
 	Random rand = new Random();
-    public void attack(Character user, Character enemy, int dieroll1, int dieroll2) {
+    public void attack(Character attacker, Character attackee, int dieroll1, int dieroll2, int[] attack) {
     	
     }
     
     public int dieRoll() {
-    	return rand.nextInt(5)+1;
+    	return rand.nextInt(6)+1;
     }
 
 }
