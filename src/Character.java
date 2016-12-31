@@ -3,9 +3,25 @@
  */
 public class Character {
 
-    public Character() {
+    private String name;
 
-        //lol
+    //Battle-related attributes
+    private int health = 10, luck, attack, agility;
+
+    //Gameplay-oriented attributes
+    private int puffs = 0, level = 1, experience = 0;
+
+
+    public Character(String name) {
+
+        this.name = name;
+
     }
 
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
