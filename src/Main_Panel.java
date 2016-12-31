@@ -6,4 +6,6 @@ import java.awt.*;
  */
 public class Main_Panel extends JPanel {
 
+    public Main_Panel() {
+    }
 }
