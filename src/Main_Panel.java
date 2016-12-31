@@ -1,37 +1,47 @@
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.FlowLayout;
+import java.awt.Color;
 
-/**
- * Created by celinaperalta on 12/29/16.
- */
 public class Main_Panel extends JPanel {
-	
-	JButton fight_button = new JButton("Fight");
-	JButton shop_button = new JButton("Shop");
-	JButton stats_button = new JButton("Stats");
 
-    JPanel buttons = new JPanel();
+	/**
+	 * Create the panel.
+	 */
+	public Main_Panel() {
+		setBackground(new Color(255, 255, 255));
+		
+		setSize(500, 500);
+		setLayout(new GridLayout(3, 1, 0, 150));
+		
+		JLabel titleText = new JLabel("Danny the Dinosaur: The Quest for Thereese's Puffs");
+		titleText.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		titleText.setHorizontalAlignment(SwingConstants.CENTER);
+		add(titleText);
+		
+		JLabel lblNewLabel = new JLabel("Insert scandalous Dan Hu pic here");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		add(panel);
+		panel.setLayout(new GridLayout(1, 3, 0, 0));
+		
+		JButton fight_button = new JButton("Fight");
+		panel.add(fight_button);
+		
+		JButton shop_button = new JButton("Shop");
+		panel.add(shop_button);
+		
+		JButton stats_button = new JButton("Stats");
+		panel.add(stats_button);
+		
 
-	JLabel title = new JLabel("Danny the Dinosaur: The Quest for Thereese's Puffs");
+	}
 
-	Font titleFont = new Font("Verdana", Font.BOLD, 14);
-
-
-    public Main_Panel() {
-
-        title.setFont(titleFont);
-
-        buttons.setLayout(new GridLayout(1, 3));
-        buttons.add(fight_button);
-        buttons.add(shop_button);
-        buttons.add(stats_button);
-    	
-        setSize(500, 500);
-        setLayout(new BorderLayout());
-
-        add(title, BorderLayout.NORTH);
-        add(buttons, BorderLayout.SOUTH);
-
-    }
 }

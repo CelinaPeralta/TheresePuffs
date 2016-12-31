@@ -1,8 +1,7 @@
-<<<<<<< HEAD
+
 import java.util.ArrayList;
-=======
 import java.util.Random;
->>>>>>> origin/master
+
 
 /**
  * Created by celinaperalta on 12/29/16.
@@ -11,7 +10,6 @@ import java.util.Random;
 
 public class Battle_Controller {
 
-<<<<<<< HEAD
     //lol
     final ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
 
@@ -23,7 +21,6 @@ public class Battle_Controller {
 
     }
 
-=======
 	Random rand = new Random();
     public void attack(Character attacker, Character attackee, int dieroll1, int dieroll2, int[] attack) {
     	
@@ -32,6 +29,5 @@ public class Battle_Controller {
     public int dieRoll() {
     	return rand.nextInt(6)+1;
     }
->>>>>>> origin/master
 
 }

@@ -16,8 +16,7 @@ public class Master_Frame extends JFrame {
         //ugh how to switch between panels lol
     	setTitle("Danny the Dinosaur");
 		setSize(500, 500);
-        setLayout(new BorderLayout());
-        add(main_panel, BorderLayout.SOUTH);
+        add(main_panel);
 
     }
 

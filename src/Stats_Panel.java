@@ -1,7 +1,12 @@
-import javax.swing.*;
+import javax.swing.JPanel;
 
-/**
- * Created by celinaperalta on 12/30/16.
- */
 public class Stats_Panel extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public Stats_Panel() {
+
+	}
+
 }
