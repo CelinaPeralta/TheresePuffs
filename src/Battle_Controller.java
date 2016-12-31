@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 
 import java.util.ArrayList;
 import java.util.Random;
 
+=======
+import java.util.ArrayList;
+import java.util.Random;
+>>>>>>> origin/master
 
 /**
  * Created by celinaperalta on 12/29/16.
