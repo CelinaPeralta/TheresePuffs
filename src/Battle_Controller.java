@@ -14,8 +14,12 @@ public class Battle_Controller {
 
     public Battle_Controller() {
 
-        VILLAIN_NAMES.add("Cenpai");
-        VILLAIN_NAMES.add("");
+    	VILLAIN_NAMES.add("Cenpai"); 
+    	VILLAIN_NAMES.add("Selena Persalta"); 
+    	VILLAIN_NAMES.add("Sillina Purralta"); 
+    	VILLAIN_NAMES.add("Assorted Cans"); 
+    	VILLAIN_NAMES.add("Commander Algae"); 
+    	VILLAIN_NAMES.add("Matt Bansil");
 
 
     }
