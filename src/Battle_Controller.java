@@ -20,7 +20,9 @@ public class Battle_Controller {
     	VILLAIN_NAMES.add("Assorted Cans"); 
     	VILLAIN_NAMES.add("Commander Algae"); 
     	VILLAIN_NAMES.add("Matt Bansil");
-
+    	VILLAIN_NAMES.add("Celili");
+    	VILLAIN_NAMES.add("Celulu");
+    	VILLAIN_NAMES.add("MattyBRaps");
 
     }
 
