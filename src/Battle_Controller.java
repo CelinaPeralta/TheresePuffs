@@ -26,7 +26,7 @@ public class Battle_Controller {
 
 	}
 
-	// pass in the selected attack
+	// pass in the selected attack through button click or something
 	public void attack(Character attacker, Character attackee, String attack_name) {
 
 		int roll1 = dieRoll();
@@ -36,9 +36,10 @@ public class Battle_Controller {
 		// For debugging
 		System.out.println(attacker.getName());
 		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
-
+		
 		if (total >= attacker.getAttackValue(attack_name)) {
 			//TODO
+			//Do we want to have a definite hit each time or factor in agility and accuracy
 		} else {
 			//TODO
 		}
@@ -46,7 +47,6 @@ public class Battle_Controller {
 	}
 
 	public int dieRoll() {
-
 		// return some number 1-6
 		return rand.nextInt(6) + 1;
 	}
