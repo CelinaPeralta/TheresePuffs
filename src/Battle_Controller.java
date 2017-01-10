@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -25,11 +26,22 @@ public class Battle_Controller {
 
 	}
 
-	public void attack(Character attacker, Character attackee, int dieroll1, int dieroll2, int[] attack) {
+	// pass in the selected attack
+	public void attack(Character attacker, Character attackee, String attack_name) {
 
 		int roll1 = dieRoll();
 		int roll2 = dieRoll();
-		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + (roll1 + roll2));
+		int total = roll1 + roll2;
+
+		// For debugging
+		System.out.println(attacker.getName());
+		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
+
+		if (total >= attacker.getAttackValue(attack_name)) {
+			//TODO
+		} else {
+			//TODO
+		}
 
 	}
 
