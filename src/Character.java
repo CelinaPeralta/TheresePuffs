@@ -4,8 +4,6 @@ import java.util.*;
  * Created by celinaperalta on 12/29/16.
  */
 public class Character {
-	
-	//TODO: Make moves upgradable by increasing damage and appending some Roman numeral to it i.e. Move II, Move III
 
 	private String name;
 
