@@ -5,6 +5,8 @@ import java.awt.*;
  * Created by celinaperalta on 12/30/16.
  */
 public class Master_Frame extends JFrame {
+	
+	//Implement a card layout?
 
     Main_Panel main_panel = new Main_Panel();
 

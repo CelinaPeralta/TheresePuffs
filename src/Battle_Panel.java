@@ -1,11 +1,14 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+
 import javax.swing.JSplitPane;
 
 public class Battle_Panel extends JPanel {
@@ -29,7 +32,9 @@ public class Battle_Panel extends JPanel {
 		add(controls);
 		controls.setLayout(null);
 		
-		JButton attack1 = new JButton("New button");
+		//Pass in attack names
+		
+		JButton attack1 = new JButton("New Button");
 		attack1.setBounds(30, 37, 117, 29);
 		controls.add(attack1);
 		
@@ -44,5 +49,14 @@ public class Battle_Panel extends JPanel {
 		JButton attack4 = new JButton("New button");
 		attack4.setBounds(360, 92, 117, 29);
 		controls.add(attack4);
+	}
+	
+	public class AddButtonListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			//pass in move name then do things
+			
+		}
 	}
 }

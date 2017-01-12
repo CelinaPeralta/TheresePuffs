@@ -11,7 +11,7 @@ public class Character {
 	private int health = 100, luck = 0, attack = 10, agility = 10, accuracy = 50;
 
 	// Gameplay-oriented attributes
-	private int puffs = 0, level = 1, experience = 0;
+	private int puffs = 0, level = 1, experience = 0, att_points = 0;
 
 	// Attack array stores 4 attacks per character. Attack has damage/strength
 	// and accuracy.
