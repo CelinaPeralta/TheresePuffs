@@ -38,10 +38,8 @@ public class Battle_Controller {
 		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
 		
 		if (total >= attacker.getAttackValue(attack_name)) {
-			
-			//
-			
-			
+			//TODO
+			//Do we want to have a definite hit each time or factor in agility and accuracy
 		} else {
 			//TODO
 		}
