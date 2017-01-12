@@ -8,8 +8,7 @@ public class Character {
 	private String name;
 
 	// Battle-related attributes
-	private int health = 100, luck = 0, attack = 10, agility = 10;
-	private double accuracy = 0.5;
+	private int health = 100, luck = 0, attack = 10, agility = 10, accuracy = 50;
 
 	// Gameplay-oriented attributes
 	private int puffs = 0, level = 1, experience = 0;
@@ -87,7 +86,7 @@ public class Character {
 		return accuracy;
 	}
 
-	public void setAccuracy(double accuracy) {
+	public void setAccuracy(int accuracy) {
 		this.accuracy = accuracy;
 	}
 
