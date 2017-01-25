@@ -43,6 +43,10 @@ public class Character {
 
 	}
 
+	public void takeDamage(int damage) {
+		health -= damage;
+	}
+	
 	@Override
 	public String toString() {
 		return "Character{" + "name='" + name + '\'' + '}';
@@ -88,7 +92,7 @@ public class Character {
 		this.agility = agility;
 	}
 
-	public double getAccuracy() {
+	public int getAccuracy() {
 		return accuracy;
 	}
 
