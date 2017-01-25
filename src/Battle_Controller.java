@@ -42,7 +42,7 @@ public class Battle_Controller {
 			//Do we want to have a definite hit each time or factor in agility and accuracy
 			//yeah sure why not
 			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
-			int hit_attempt = rand.nextInt()*attacker.getAccuracy();
+			int hit_attempt = rand.nextInt(total_dexterity);
 			if (hit_attempt <= attacker.getAccuracy()) {
 				attackee.takeDamage(attacker.getAttackStrength(attack_name));
 			}
