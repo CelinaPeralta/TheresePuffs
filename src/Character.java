@@ -6,6 +6,7 @@ import java.util.*;
 public class Character {
 
 	private String name;
+	private Map<String, int[]> all_attacks = new HashMap<String, int[]>();
 
 	// Battle-related attributes
 	private int health = 100, luck = 0, attack = 10, agility = 10, accuracy = 50;
@@ -20,14 +21,14 @@ public class Character {
 	public Character(String name) {
 
 		this.name = name;
-		attack_list.put("Miracle Super Punch", new int[] {5, 1});
-		attack_list.put("Punch", new int[] {10, 5});
-		attack_list.put("Smack", new int[] {15, 6});
-		attack_list.put("Kick", new int[] {20, 7});
-		attack_list.put("Explosive Demon Wave", new int[] {25, 8});
-		attack_list.put("Kuchikarakikōha", new int[] {37, 9});
-		attack_list.put("Demonic Piercing Light Murder Gun", new int[] {50, 10});
-		attack_list.put("Double Smack", new int[] {75, 12});
+		all_attacks.put("Miracle Super Punch", new int[] {5, 1});
+		all_attacks.put("Punch", new int[] {10, 5});
+		all_attacks.put("Smack", new int[] {15, 6});
+		all_attacks.put("Kick", new int[] {20, 7});
+		all_attacks.put("Explosive Demon Wave", new int[] {25, 8});
+		all_attacks.put("Kuchikarakikōha", new int[] {37, 9});
+		all_attacks.put("Demonic Piercing Light Murder Gun", new int[] {50, 10});
+		all_attacks.put("Double Smack", new int[] {75, 12});
 
 	}
 
@@ -64,8 +65,8 @@ public class Character {
 		return health;
 	}
 
-	public void setHealth(int health) {
-		this.health = health;
+	public void resetHealth() {
+		health = 100;
 	}
 
 	public int getLuck() {
