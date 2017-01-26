@@ -6,7 +6,14 @@ import java.util.*;
 public class Character {
 
 	private String name;
-	private Map<String, int[]> all_attacks = new HashMap<String, int[]>();
+
+	// Use all_attacks to find index of attack in all_attacks_strengths
+	private ArrayList<String> all_attacks = new ArrayList<String>();
+	private ArrayList<int[]> all_attacks_strengths = new ArrayList<int[]>();
+
+	// Attack array stores 4 attacks per character. Attack has damage/strength
+	// and accuracy.
+	private String[] attack_list = new String[4];
 
 	// Battle-related attributes
 	private int health = 100, luck = 0, attack = 10, agility = 10, accuracy = 50;
@@ -14,40 +21,63 @@ public class Character {
 	// Gameplay-oriented attributes
 	private int puffs = 0, level = 1, experience = 0, att_points = 0;
 
-	// Attack array stores 4 attacks per character. Attack has damage/strength
-	// and accuracy.
-	private Map<String, int[]> attack_list = new HashMap<String, int[]>();
-
 	public Character(String name) {
 
 		this.name = name;
-		all_attacks.put("Miracle Super Punch", new int[] {5, 1});
-		all_attacks.put("Punch", new int[] {10, 5});
-		all_attacks.put("Smack", new int[] {15, 6});
-		all_attacks.put("Kick", new int[] {20, 7});
-		all_attacks.put("Explosive Demon Wave", new int[] {25, 8});
-		all_attacks.put("Kuchikarakikōha", new int[] {37, 9});
-		all_attacks.put("Demonic Piercing Light Murder Gun", new int[] {50, 10});
-		all_attacks.put("Double Smack", new int[] {75, 12});
+
+		all_attacks.add("Miracle Super Punch");
+		all_attacks_strengths.add(new int[] { 5, 1 });
+
+		all_attacks.add("Punch");
+		all_attacks_strengths.add(new int[] { 10, 5 });
+
+		all_attacks.add("Smack");
+		all_attacks_strengths.add(new int[] { 15, 6 });
+
+		all_attacks.add("Kick");
+		all_attacks_strengths.add(new int[] { 20, 7 });
+
+		all_attacks.add("Explosive Demon Wave");
+		all_attacks_strengths.add(new int[] { 25, 8 });
+
+		all_attacks.add("Kuchikarakikōha");
+		all_attacks_strengths.add(new int[] { 37, 9 });
+
+		all_attacks.add("Demonic Piercing Light Murder Gun");
+		all_attacks_strengths.add(new int[] { 50, 10 });
+
+		all_attacks.add("Double Smack");
+		all_attacks_strengths.add(new int[] { 75, 12 });
+		
+		//------------------------------TESTING CODE------------------------------------
+		attack_list[0] = all_attacks.get(0);
+		attack_list[1] = all_attacks.get(1);
+		attack_list[2] = all_attacks.get(2);
+		attack_list[3] = all_attacks.get(3);
+		
 
 	}
 
 	public int getAttackStrength(String a) {
 
-		return attack_list.get(a)[0];
+		int index = all_attacks.indexOf(a);
+
+		return all_attacks_strengths.get(index)[0];
 
 	}
 
 	public int getAttackValue(String a) {
 
-		return attack_list.get(a)[1];
+		int index = all_attacks.indexOf(a);
+
+		return all_attacks_strengths.get(index)[0];
 
 	}
 
 	public void takeDamage(int damage) {
 		health -= damage;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Character{" + "name='" + name + '\'' + '}';
@@ -125,7 +155,8 @@ public class Character {
 		this.experience = experience;
 	}
 
-	public Map<String, int[]> getAttack_list() {
+	public String[] getAttack_list() {
+
 		return attack_list;
 	}
 

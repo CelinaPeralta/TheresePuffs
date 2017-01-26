@@ -36,7 +36,7 @@ public class Battle_Panel extends JPanel {
 		
 		//Pass in attack names
 		//Mr. Isecke would be yelling at me rn
-		String[] current_attacks = (String[]) c.getAttack_list().keySet().toArray();
+		String[] current_attacks = c.getAttack_list();
 		
 		
 		JButton attack1 = new JButton(current_attacks[0]);

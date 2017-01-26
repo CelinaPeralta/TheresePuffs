@@ -9,6 +9,9 @@ public class Master_Frame extends JFrame {
 	//Implement a card layout?
 
     Main_Panel main_panel = new Main_Panel();
+    Character c = new Character("Bob");
+    Battle_Panel test = new Battle_Panel(c);
+   
 
     public Master_Frame() {
 
@@ -18,7 +21,7 @@ public class Master_Frame extends JFrame {
         //ugh how to switch between panels lol
     	setTitle("Danny the Dinosaur");
 		setSize(500, 500);
-        add(main_panel);
+        add(test);
 
     }
 
