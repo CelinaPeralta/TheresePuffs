@@ -69,6 +69,8 @@ public class Battle_Panel extends JPanel {
 
 			//pass in move name then do things
 			JButton button = (JButton)e.getSource();
+			
+			//delete this later
 			System.out.println(c.getAttackValue(button.getText()));
 			
 			

@@ -38,14 +38,15 @@ public class Battle_Controller {
 		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
 		
 		if (total >= attacker.getAttackValue(attack_name)) {
-			//TODO
-			//Do we want to have a definite hit each time or factor in agility and accuracy
-			//yeah sure why not
 			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
 			int hit_attempt = rand.nextInt(total_dexterity);
+			
+			
+			
 			if (hit_attempt <= attacker.getAccuracy()) {
 				attackee.takeDamage(attacker.getAttackStrength(attack_name));
 			}
+			
 		} else {
 			//not gonna be println but just for now
 			System.out.println(attacker.getName()+" missed "+attackee.getName());
