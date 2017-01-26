@@ -19,6 +19,8 @@ public class Master_Frame extends JFrame {
         //main panel (options, exit, stats)
         //upgrade panel
         //ugh how to switch between panels lol
+    	//http://stackoverflow.com/questions/21422431/switching-between-jpanels-in-a-jframe
+    	//ayy lmao .show
     	setTitle("Danny the Dinosaur");
 		setSize(500, 500);
         add(test);
