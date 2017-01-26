@@ -14,11 +14,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JSplitPane;
 
 public class Battle_Panel extends JPanel {
+	
+	private Character c;
 
 	/**
 	 * Create the panel.
 	 */
 	public Battle_Panel(Character c) {
+		
+		this.c = c;
+		
 		setBackground(new Color(255, 255, 255));
 
 		setSize(500, 500);
@@ -35,24 +40,26 @@ public class Battle_Panel extends JPanel {
 		controls.setLayout(null);
 		
 		//Pass in attack names
-		//Mr. Isecke would be yelling at me rn
 		String[] current_attacks = c.getAttack_list();
-		
 		
 		JButton attack1 = new JButton(current_attacks[0]);
 		attack1.setBounds(30, 37, 117, 29);
+		attack1.addActionListener(new AddButtonListener());
 		controls.add(attack1);
 		
 		JButton attack2 = new JButton(current_attacks[1]);
 		attack2.setBounds(30, 92, 117, 29);
+		attack2.addActionListener(new AddButtonListener());
 		controls.add(attack2);
 		
 		JButton attack3 = new JButton(current_attacks[2]);
 		attack3.setBounds(360, 37, 117, 29);
+		attack3.addActionListener(new AddButtonListener());
 		controls.add(attack3);
 		
 		JButton attack4 = new JButton(current_attacks[3]);
 		attack4.setBounds(360, 92, 117, 29);
+		attack4.addActionListener(new AddButtonListener());
 		controls.add(attack4);
 	}
 	
@@ -61,6 +68,9 @@ public class Battle_Panel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 
 			//pass in move name then do things
+			JButton button = (JButton)e.getSource();
+			System.out.println(c.getAttackValue(button.getText()));
+			
 			
 		}
 	}
