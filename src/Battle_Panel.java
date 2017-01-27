@@ -22,7 +22,7 @@ public class Battle_Panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Battle_Panel(Character c) {
+	public Battle_Panel(Character c, Character v) {
 		
 		this.c = c;
 		
@@ -58,12 +58,22 @@ public class Battle_Panel extends JPanel {
 		
 		//fml how to paint this
 		JPanel player_health_bar = new JPanel();
-		player_health_bar.setBounds(6, 241, 255, 21);
+		player_health_bar.setBounds(6, 235, 255, 27);
 		display.add(player_health_bar);
+		player_health_bar.setLayout(null);
+		
+		JLabel label_1 = new JLabel(c.getName());
+		label_1.setBounds(6, 6, 243, 16);
+		player_health_bar.add(label_1);
 		
 		JPanel enemy_health_bar = new JPanel();
-		enemy_health_bar.setBounds(239, 6, 255, 21);
+		enemy_health_bar.setBounds(239, 6, 255, 27);
 		display.add(enemy_health_bar);
+		enemy_health_bar.setLayout(null);
+		
+		JLabel label = new JLabel(v.getName());
+		label.setBounds(6, 6, 243, 16);
+		enemy_health_bar.add(label);
 		
 		
 		

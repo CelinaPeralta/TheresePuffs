@@ -26,6 +26,14 @@ public class Battle_Controller {
 
 	}
 
+	public Character getCharacter() {
+		int name = (int) Math.random() * (VILLAIN_NAMES.size() - 1);
+		
+		Character v = new Character(VILLAIN_NAMES.get(name));
+		VILLAIN_NAMES.remove(name);
+		return v;
+	}
+
 	// pass in the selected attack through button click or something
 	public void attack(Character attacker, Character attackee, String attack_name) {
 
@@ -36,20 +44,18 @@ public class Battle_Controller {
 		// For debugging
 		System.out.println(attacker.getName());
 		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
-		
+
 		if (total >= attacker.getAttackValue(attack_name)) {
 			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
 			int hit_attempt = rand.nextInt(total_dexterity);
-			
-			
-			
+
 			if (hit_attempt <= attacker.getAccuracy()) {
 				attackee.takeDamage(attacker.getAttackStrength(attack_name));
 			}
-			
+
 		} else {
-			//not gonna be println but just for now
-			System.out.println(attacker.getName()+" missed "+attackee.getName());
+			// not gonna be println but just for now
+			System.out.println(attacker.getName() + " missed " + attackee.getName());
 		}
 
 	}
