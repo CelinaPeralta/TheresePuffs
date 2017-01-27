@@ -21,7 +21,7 @@ public class Master_Frame extends JFrame {
 
 	Main_Panel main_panel = new Main_Panel();
 	Battle_Panel battle_panel = new Battle_Panel(c);
-	Stats_Panel stats_panel = new Stats_Panel();
+	Stats_Panel stats_panel = new Stats_Panel(c);
 
 	CardLayout layout = new CardLayout();
 	JPanel cardPanel = new JPanel(layout);
@@ -57,20 +57,37 @@ public class Master_Frame extends JFrame {
 		frame.setVisible(true);
 
 	}
+	
+	private void updatePanels(){
+		cardPanel.remove(battle_panel);
+		cardPanel.remove(stats_panel);
+		
+		battle_panel = new Battle_Panel(c);
+		stats_panel = new Stats_Panel(c);
+		
+		cardPanel.add(battle_panel, "BATTLE");
+		cardPanel.add(stats_panel, "STATS");
+	}
 
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
+			String panel_name = "";
+			
 			if ("Fight".equals(command)) {
-				layout.show(cardPanel, "BATTLE");
+				updatePanels();
+				panel_name = "BATTLE";
 			} else if ("Stats".equals(command)) {
-				layout.show(cardPanel, "STATS");
+				panel_name = "STATS";
 			} else if ("Shop".equals(command)) {
 				System.out.println("Make the shop");
 			} else {
-				layout.show(cardPanel, "MAIN");
+				panel_name = "MAIN";
 			}
+			updatePanels();
+			layout.show(cardPanel, panel_name);
+			
 		}
 	}
 

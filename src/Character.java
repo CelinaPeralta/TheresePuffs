@@ -4,6 +4,7 @@ import java.util.*;
  * Created by celinaperalta on 12/29/16.
  */
 public class Character {
+	
 
 	private String name;
 
@@ -146,6 +147,14 @@ public class Character {
 
 	public void setExperience(int experience) {
 		this.experience = experience;
+	}
+	
+	public int getAtt_points(){
+		return att_points;
+	}
+	
+	public void setAtt_points(int i){
+		this.att_points = i;
 	}
 
 	public String[] getAttack_list() {
