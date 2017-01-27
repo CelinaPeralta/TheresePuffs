@@ -16,7 +16,7 @@ public class Character {
 	private String[] attack_list = new String[4];
 
 	// Battle-related attributes
-	private int health = 100, luck = 0, attack = 10, agility = 10, accuracy = 50;
+	private int health = 100, attack = 10, agility = 10, accuracy = 50;
 
 	// Gameplay-oriented attributes
 	private int puffs = 0, level = 1, experience = 0, att_points = 0;
@@ -99,13 +99,6 @@ public class Character {
 		health = 100;
 	}
 
-	public int getLuck() {
-		return luck;
-	}
-
-	public void setLuck(int luck) {
-		this.luck = luck;
-	}
 
 	public int getAttack() {
 		return attack;
