@@ -17,10 +17,10 @@ public class Character {
 	private String[] attack_list = new String[4];
 
 	// Battle-related attributes
-	private int health = 100, attack = 10, agility = 10, accuracy = 50;
+	private int max_health = 100, health = 100, attack = 10, agility = 10, accuracy = 50;
 
 	// Gameplay-oriented attributes
-	private int puffs = 0, level = 1, experience = 0, att_points = 0;
+	private int puffs = 0, level = 1, experience = 0, att_points = 5;
 
 	public Character(String name) {
 
@@ -58,6 +58,10 @@ public class Character {
 		
 
 	}
+	
+	public ArrayList<String> getAllAttacks(){
+		return all_attacks;
+	}
 
 	public int getAttackStrength(String a) {
 
@@ -94,6 +98,14 @@ public class Character {
 
 	public int getHealth() {
 		return health;
+	}
+	
+	public int getMax_health(){
+		return max_health;
+	}
+	
+	public void setMax_health(int i){
+		max_health = i;
 	}
 
 	public void resetHealth() {

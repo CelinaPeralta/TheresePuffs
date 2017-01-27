@@ -6,13 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 public class Stats_Panel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
+	JComboBox atts;
+	JLabel lblAttPts, lblHealth, lblAgility, lblAccuracy, lblAttack, lblExp, lblPuffs, lblLevel;
+	Character c;
+
 	public Stats_Panel(Character c) {
+		this.c = c;
 		setSize(500, 500);
 		setLayout(null);
 
@@ -21,74 +27,116 @@ public class Stats_Panel extends JPanel {
 		name.setBounds(155, 35, 186, 16);
 		add(name);
 
-		JLabel lblAttPts = new JLabel("Attribute Points: " + c.getAtt_points());
-		lblAttPts.setBounds(170, 289, 186, 16);
+		lblAttPts = new JLabel("Attribute Points: " + c.getAtt_points());
+		lblAttPts.setBounds(36, 177, 186, 16);
 		add(lblAttPts);
 
-		JLabel lblHealth = new JLabel("Health: " + c.getHealth());
-		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHealth.setBounds(36, 336, 186, 16);
+		lblHealth = new JLabel("Health: " + c.getHealth());
+		lblHealth.setHorizontalAlignment(SwingConstants.LEFT);
+		lblHealth.setBounds(36, 211, 186, 16);
 		add(lblHealth);
 
-		JLabel lblAgility = new JLabel("Agility: " + c.getAgility());
-		lblAgility.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAgility.setBounds(36, 396, 186, 16);
+		lblAgility = new JLabel("Agility: " + c.getAgility());
+		lblAgility.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAgility.setBounds(36, 239, 186, 16);
 		add(lblAgility);
 
-		JLabel lblAccuracy = new JLabel("Accuracy: " + c.getAccuracy());
-		lblAccuracy.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAccuracy.setBounds(274, 396, 186, 16);
+		lblAccuracy = new JLabel("Accuracy: " + c.getAccuracy());
+		lblAccuracy.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAccuracy.setBounds(36, 299, 186, 16);
 		add(lblAccuracy);
 
-		JLabel lblAttack = new JLabel("Attack: " + c.getAttack());
-		lblAttack.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAttack.setBounds(274, 336, 186, 16);
+		lblAttack = new JLabel("Attack: " + c.getAttack());
+		lblAttack.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAttack.setBounds(36, 271, 186, 16);
 		add(lblAttack);
 
-		JLabel lblExp = new JLabel("Experience: " + c.getExperience());
-		lblExp.setBounds(170, 233, 156, 16);
+		lblExp = new JLabel("Experience: " + c.getExperience());
+		lblExp.setBounds(36, 102, 156, 16);
 		add(lblExp);
 
-		JLabel lblPuffs = new JLabel("Puffs: " + c.getPuffs());
-		lblPuffs.setBounds(170, 261, 156, 16);
+		lblPuffs = new JLabel("Puffs: " + c.getPuffs());
+		lblPuffs.setBounds(36, 130, 156, 16);
 		add(lblPuffs);
 
-		JLabel lblLevel = new JLabel("Level: " + c.getLevel());
-		lblLevel.setBounds(170, 205, 156, 16);
+		lblLevel = new JLabel("Level: " + c.getLevel());
+		lblLevel.setBounds(36, 74, 156, 16);
 		add(lblLevel);
 
-		JButton button = new JButton("+");
-		button.setBounds(73, 355, 53, 29);
-		add(button);
+		JButton addPt = new JButton("+");
+		addPt.setBounds(30, 381, 53, 29);
+		addPt.addActionListener(new ButtonListener());
+		add(addPt);
 
-		JButton button_1 = new JButton("-");
-		button_1.setBounds(127, 355, 53, 29);
-		add(button_1);
+		JButton subtractPt = new JButton("-");
+		subtractPt.setBounds(84, 381, 53, 29);
+		subtractPt.addActionListener(new ButtonListener());
+		add(subtractPt);
 
-		JButton button_2 = new JButton("+");
-		button_2.setBounds(312, 355, 53, 29);
-		add(button_2);
+		atts = new JComboBox();
+		atts.setBounds(30, 342, 104, 27);
+		atts.addItem("Health");
+		atts.addItem("Attack");
+		atts.addItem("Agility");
+		atts.addItem("Accuracy");
+		add(atts);
 
-		JButton button_3 = new JButton("-");
-		button_3.setBounds(366, 355, 53, 29);
-		add(button_3);
+		JComboBox move1 = new JComboBox();
+		move1.setBounds(321, 205, 156, 27);
+		for (String s : c.getAllAttacks())
+			move1.addItem(s);
+		add(move1);
 
-		JButton button_4 = new JButton("+");
-		button_4.setBounds(73, 419, 53, 29);
-		add(button_4);
+		JComboBox move2 = new JComboBox();
+		move2.setBounds(321, 270, 156, 27);
+		for (String s : c.getAllAttacks())
+			move2.addItem(s);
+		add(move2);
 
-		JButton button_5 = new JButton("-");
-		button_5.setBounds(127, 419, 53, 29);
-		add(button_5);
+		JComboBox move3 = new JComboBox();
+		move3.setBounds(321, 322, 156, 27);
+		for (String s : c.getAllAttacks())
+			move3.addItem(s);
+		add(move3);
 
-		JButton button_6 = new JButton("+");
-		button_6.setBounds(312, 419, 53, 29);
-		add(button_6);
+		JComboBox move4 = new JComboBox();
+		move4.setBounds(321, 381, 156, 27);
+		for (String s : c.getAllAttacks())
+			move4.addItem(s);
+		add(move4);
 
-		JButton button_7 = new JButton("-");
-		button_7.setBounds(366, 419, 53, 29);
-		add(button_7);
+		JLabel lblMove = new JLabel("Move 1:");
+		lblMove.setBounds(248, 209, 61, 16);
+		add(lblMove);
 
+		JLabel lblMove_1 = new JLabel("Move 2:");
+		lblMove_1.setBounds(248, 269, 61, 16);
+		add(lblMove_1);
+
+		JLabel lblMove_2 = new JLabel("Move 3:");
+		lblMove_2.setBounds(248, 326, 61, 16);
+		add(lblMove_2);
+
+		JLabel lblMove_3 = new JLabel("Move 4:");
+		lblMove_3.setBounds(248, 385, 61, 16);
+		add(lblMove_3);
+
+		JButton btnSave = new JButton("Save");
+		btnSave.setBounds(192, 435, 117, 29);
+		add(btnSave);
+
+	}
+	
+	private void updateLabels(){
+		lblAttPts.setText("Attribute Points: " + c.getAtt_points());;
+		lblHealth.setText("Health: " + c.getMax_health());
+		lblAgility.setText("Agility: " + c.getAgility()); 
+		lblAccuracy.setText("Accuracy: " + c.getAccuracy());
+		lblAttack.setText("Attack: " + c.getAttack()); 
+		lblExp.setText("Experience: " + c.getExperience()); 
+		lblPuffs.setText("Puffs: " + c.getPuffs()); 
+		lblLevel.setText("Level: " + c.getLevel());
+		
 	}
 
 	public class ButtonListener implements ActionListener {
@@ -97,6 +145,44 @@ public class Stats_Panel extends JPanel {
 
 			// pass in move name then do things
 			JButton button = (JButton) e.getSource();
+
+			if (button.getText() == "+" && c.getAtt_points() > 0) {
+				if (atts.getSelectedItem() == "Health") {
+					c.setMax_health(c.getMax_health() + 10);
+				}
+				if (atts.getSelectedItem() == "Attack") {
+					c.setAttack(c.getAttack() + 5);
+				}
+				if (atts.getSelectedItem() == "Agility") {
+					c.setAgility(c.getAgility() + 5);
+				}
+				if (atts.getSelectedItem() == "Accuracy") {
+					c.setAccuracy(c.getAccuracy() + 5);
+				}
+				c.setAtt_points(c.getAtt_points() - 1);
+				System.out.println(c.getAtt_points());
+				updateLabels();
+			}
+			if (button.getText() == "-") {
+				if (atts.getSelectedItem() == "Health" && c.getMax_health() - 10 >= 100) {
+					c.setMax_health(c.getMax_health() - 10);
+					c.setAtt_points(c.getAtt_points() + 1);
+				}
+				if (atts.getSelectedItem() == "Attack" && c.getAttack() - 5 >= 10) {
+					c.setAttack(c.getAttack() - 5);
+					c.setAtt_points(c.getAtt_points() + 1);
+				}
+				if (atts.getSelectedItem() == "Agility" && c.getAgility() - 5 >= 10) {
+					c.setAgility(c.getAgility() - 5);
+					c.setAtt_points(c.getAtt_points() + 1);
+				}
+				if (atts.getSelectedItem() == "Accuracy" && c.getAccuracy() - 5 >= 50) {
+					c.setAccuracy(c.getAccuracy() - 5);
+					c.setAtt_points(c.getAtt_points() + 1);
+				}
+				System.out.println(c.getAtt_points());
+				updateLabels();
+			}
 
 		}
 	}
