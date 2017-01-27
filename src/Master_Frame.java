@@ -19,7 +19,9 @@ public class Master_Frame extends JFrame {
 	private static String CHARACTER_NAME;
 	private static Character c;
 
+	
 	Main_Panel main_panel = new Main_Panel();
+	Battle_Controller battle_controller = new Battle_Controller();
 	Battle_Panel battle_panel = new Battle_Panel(c);
 	Stats_Panel stats_panel = new Stats_Panel(c);
 

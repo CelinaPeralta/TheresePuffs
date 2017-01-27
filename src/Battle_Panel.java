@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 public class Battle_Panel extends JPanel {
 	
 	private Character c;
-	private JLabel lblDie, lblSum, lblDie_1, lblHitProbability, lblSelectedMove, lblMoveCost, lblDamage;
+	private JLabel lblDie, lblSum, lblDie2, lblHitProbability, lblSelectedMove, lblMoveCost, lblDamage;
 
 	/**
 	 * Create the panel.
@@ -49,11 +49,23 @@ public class Battle_Panel extends JPanel {
 		lblSum = new JLabel("Sum:");
 		panel.add(lblSum);
 		
-		lblDie_1 = new JLabel("  Die 2:");
-		panel.add(lblDie_1);
+		lblDie2 = new JLabel("  Die 2:");
+		panel.add(lblDie2);
 		
 		lblHitProbability = new JLabel("Hit Probability:");
 		panel.add(lblHitProbability);
+		
+		
+		//fml how to paint this
+		JPanel player_health_bar = new JPanel();
+		player_health_bar.setBounds(6, 241, 255, 21);
+		display.add(player_health_bar);
+		
+		JPanel enemy_health_bar = new JPanel();
+		enemy_health_bar.setBounds(239, 6, 255, 21);
+		display.add(enemy_health_bar);
+		
+		
 		
 		JPanel controls = new JPanel();
 		controls.setBackground(new Color(245, 245, 245));
