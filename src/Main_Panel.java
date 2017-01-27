@@ -15,6 +15,8 @@ public class Main_Panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private String NAV_PANEL = "";
+
 	public Main_Panel() {
 
 		setBackground(new Color(255, 255, 255));
@@ -36,23 +38,12 @@ public class Main_Panel extends JPanel {
 		add(panel);
 		panel.setLayout(new GridLayout(1, 3, 0, 0));
 
-		JButton fight_button = new JButton("Fight");
-		panel.add(fight_button);
-
-		JButton shop_button = new JButton("Shop");
-		panel.add(shop_button);
-
-		JButton stats_button = new JButton("Stats");
-		panel.add(stats_button);
-
 	}
 
-	public class AddButtonListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent e) {
-
-		}
-
+	public String getNav() {
+		return NAV_PANEL;
 	}
+
+
 
 }

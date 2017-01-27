@@ -1,55 +1,91 @@
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * Created by celinaperalta on 12/30/16.
  */
 public class Master_Frame extends JFrame {
-	
-	//Implement a card layout?
-	
+
+	// Implement a card layout?
+
 	private static String CHARACTER_NAME;
 	private static Character c;
-    Main_Panel main_panel;
-    Battle_Panel test = new Battle_Panel(c);
-   
 
-    public Master_Frame() {
+	Main_Panel main_panel = new Main_Panel();
+	Battle_Panel battle_panel = new Battle_Panel(c);
+	Stats_Panel stats_panel = new Stats_Panel();
 
-        //need a battle panel**
-        //main panel (options, exit, stats)
-        //upgrade panel
-        //ugh how to switch between panels lol
-    	//http://stackoverflow.com/questions/21422431/switching-between-jpanels-in-a-jframe
-    	//ayy lmao .show
-    	setTitle("Danny the Dinosaur");
-		setSize(500, 500);
-		setLayout(new CardLayout());
+	CardLayout layout = new CardLayout();
+	JPanel cardPanel = new JPanel(layout);
+
+	public Master_Frame() {
+
+		JButton main_button = new JButton("Main");
+		JButton fight_button = new JButton("Fight");
+		JButton shop_button = new JButton("Shop");
+		JButton stats_button = new JButton("Stats");
+		JPanel buttonsPanel = new JPanel();
 		
-		initComponents();
+		buttonsPanel.add(main_button);
+		buttonsPanel.add(fight_button);
+		buttonsPanel.add(shop_button);
+		buttonsPanel.add(stats_button);
+		
+		fight_button.addActionListener(new ButtonListener());
+		shop_button.addActionListener(new ButtonListener());
+		stats_button.addActionListener(new ButtonListener());
+		main_button.addActionListener(new ButtonListener());
 
-    }
-    
-    private void initComponents(){
-    	//how to card layout
-    	 main_panel = new Main_Panel();
-    }
+		cardPanel.add(main_panel, "MAIN");
+		cardPanel.add(battle_panel, "BATTLE");
+		cardPanel.add(stats_panel, "STATS");
 
-    public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setSize(500, 550);
+		frame.add(cardPanel);
+		frame.add(buttonsPanel, BorderLayout.SOUTH);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 
-    	CHARACTER_NAME = JOptionPane.showInputDialog("Enter a character name: ");
-    	c = new Character(CHARACTER_NAME);
-    	
-        Master_Frame frame = new Master_Frame();
-        
-        //switching code here? or in each panel?
+	}
 
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
+	private class ButtonListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			if ("Fight".equals(command)) {
+				layout.show(cardPanel, "BATTLE");
+			} else if ("Stats".equals(command)) {
+				layout.show(cardPanel, "STATS");
+			} else if ("Shop".equals(command)) {
+				System.out.println("Make the shop");
+			} else {
+				layout.show(cardPanel, "MAIN");
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+
+		CHARACTER_NAME = JOptionPane.showInputDialog("Enter a character name: ");
+		c = new Character(CHARACTER_NAME);
+
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				Master_Frame testCardLayout = new Master_Frame();
+			}
+		});
+
+	}
 
 }

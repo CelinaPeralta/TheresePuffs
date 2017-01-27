@@ -43,22 +43,22 @@ public class Battle_Panel extends JPanel {
 		String[] current_attacks = c.getAttack_list();
 		
 		JButton attack1 = new JButton(current_attacks[0]);
-		attack1.setBounds(30, 37, 117, 29);
+		attack1.setBounds(30, 37, 171, 29);
 		attack1.addActionListener(new AddButtonListener());
 		controls.add(attack1);
 		
 		JButton attack2 = new JButton(current_attacks[1]);
-		attack2.setBounds(30, 92, 117, 29);
+		attack2.setBounds(30, 92, 171, 29);
 		attack2.addActionListener(new AddButtonListener());
 		controls.add(attack2);
 		
 		JButton attack3 = new JButton(current_attacks[2]);
-		attack3.setBounds(360, 37, 117, 29);
+		attack3.setBounds(306, 37, 171, 29);
 		attack3.addActionListener(new AddButtonListener());
 		controls.add(attack3);
 		
 		JButton attack4 = new JButton(current_attacks[3]);
-		attack4.setBounds(360, 92, 117, 29);
+		attack4.setBounds(306, 92, 171, 29);
 		attack4.addActionListener(new AddButtonListener());
 		controls.add(attack4);
 	}
