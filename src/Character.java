@@ -4,13 +4,12 @@ import java.util.*;
  * Created by celinaperalta on 12/29/16.
  */
 public class Character {
-	
 
 	private String name;
 
 	// Use all_attacks to find index of attack in all_attacks_strengths
-	private ArrayList<String> all_attacks = new ArrayList<String>();
-	private ArrayList<int[]> all_attacks_strengths = new ArrayList<int[]>();
+	private static ArrayList<String> all_attacks = new ArrayList<String>();
+	private static ArrayList<int[]> all_attacks_strengths = new ArrayList<int[]>();
 
 	// Attack array stores 4 attacks per character. Attack has damage/strength
 	// and accuracy.
@@ -49,32 +48,32 @@ public class Character {
 
 		all_attacks.add("Double Smack");
 		all_attacks_strengths.add(new int[] { 75, 12 });
-		
-		//------------------------------TESTING CODE------------------------------------
+
+		// ------------------------------TESTING
+		// CODE------------------------------------
 		attack_list[0] = all_attacks.get(0);
 		attack_list[1] = all_attacks.get(1);
 		attack_list[2] = all_attacks.get(2);
 		attack_list[3] = all_attacks.get(3);
-		
 
 	}
-	
-	public ArrayList<String> getAllAttacks(){
+
+	public ArrayList<String> getAllAttacks() {
 		return all_attacks;
 	}
 
-	public int getAttackStrength(String a) {
+	public static int getAttackStrength(String a) {
 
 		int index = all_attacks.indexOf(a);
-	
 
 		return all_attacks_strengths.get(index)[0];
 
 	}
 
-	public int getAttackValue(String a) {
+	public static int getAttackValue(String a) {
 
 		int index = all_attacks.indexOf(a);
+		System.out.println("Attack index: " + index);
 
 		return all_attacks_strengths.get(index)[1];
 
@@ -83,10 +82,9 @@ public class Character {
 	public void takeDamage(int damage) {
 		health -= damage;
 	}
-	
+
 	public String getRandomAttack() {
-		Random rand = new Random();
-		int num = rand.nextInt()*attack_list.length;
+		int num = (int) Math.random() * attack_list.length;
 		return attack_list[num];
 	}
 
@@ -106,19 +104,18 @@ public class Character {
 	public int getHealth() {
 		return health;
 	}
-	
-	public int getMax_health(){
+
+	public int getMax_health() {
 		return max_health;
 	}
-	
-	public void setMax_health(int i){
+
+	public void setMax_health(int i) {
 		max_health = i;
 	}
 
 	public void resetHealth() {
 		health = 100;
 	}
-
 
 	public int getAttack() {
 		return attack;
@@ -167,12 +164,12 @@ public class Character {
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-	
-	public int getAtt_points(){
+
+	public int getAtt_points() {
 		return att_points;
 	}
-	
-	public void setAtt_points(int i){
+
+	public void setAtt_points(int i) {
 		this.att_points = i;
 	}
 

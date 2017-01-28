@@ -132,12 +132,12 @@ public class Battle_Panel extends JPanel {
 			JButton button = (JButton) e.getSource();
 
 			if (button.getText().equals("Attack!")) {
-				battle_controller.attack(c, next_villain, lblSelectedMove.getText().trim());
-				lblDie.setText(Integer.toString(battle_controller.getRoll1()));
-				lblDie2.setText(Integer.toString(battle_controller.getRoll2()));
-				lblSum.setText(Integer.toString(battle_controller.getTotal()));
+				battle_controller.attack(c, next_villain, lblSelectedMove.getText().substring("Selected Move: ".length()));
+				lblDie.setText("Roll 1: " + Integer.toString(battle_controller.getRoll1()));
+				lblDie2.setText("Roll 2: " + Integer.toString(battle_controller.getRoll2()));
+				lblSum.setText("Sum: " + Integer.toString(battle_controller.getTotal()));
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(50);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
