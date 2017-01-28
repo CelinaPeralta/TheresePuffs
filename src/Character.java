@@ -66,6 +66,7 @@ public class Character {
 	public int getAttackStrength(String a) {
 
 		int index = all_attacks.indexOf(a);
+	
 
 		return all_attacks_strengths.get(index)[0];
 
@@ -75,7 +76,7 @@ public class Character {
 
 		int index = all_attacks.indexOf(a);
 
-		return all_attacks_strengths.get(index)[0];
+		return all_attacks_strengths.get(index)[1];
 
 	}
 

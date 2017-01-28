@@ -11,6 +11,11 @@ public class Battle_Controller {
 	// Possibly make character list
 	final ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
 	private Random rand = new Random();
+	
+	private int roll1 = 0;
+	private int roll2 = 0;
+	private int total = 0;
+	
 
 	public Battle_Controller() {
 
@@ -36,9 +41,9 @@ public class Battle_Controller {
 	// pass in the selected attack through button click or something
 	public void attack(Character attacker, Character attackee, String attack_name) {
 
-		int roll1 = dieRoll();
-		int roll2 = dieRoll();
-		int total = roll1 + roll2;
+		roll1 = dieRoll();
+		roll2 = dieRoll();
+		total = roll1 + roll2;
 
 		// For debugging
 		System.out.println(attacker.getName());
@@ -62,6 +67,16 @@ public class Battle_Controller {
 	public int dieRoll() {
 		// return some number 1-6
 		return rand.nextInt(6) + 1;
+	}
+	
+	public int getRoll1(){
+		return roll1;
+	}
+	public int getRoll2(){
+		return roll2;
+	}
+	public int getTotal(){
+		return total;
 	}
 
 }
