@@ -18,11 +18,14 @@ public class Battle_Panel extends JPanel {
 	
 	private Character c;
 	private JLabel lblDie, lblSum, lblDie2, lblHitProbability, lblSelectedMove, lblMoveCost, lblDamage;
+	Battle_Controller battle_controller = new Battle_Controller();
+	
+	private Character next_villain = battle_controller.getCharacter();
 
 	/**
 	 * Create the panel.
 	 */
-	public Battle_Panel(Character c, Character v) {
+	public Battle_Panel(Character c) {
 		
 		this.c = c;
 		
@@ -71,7 +74,7 @@ public class Battle_Panel extends JPanel {
 		display.add(enemy_health_bar);
 		enemy_health_bar.setLayout(null);
 		
-		JLabel label = new JLabel(v.getName());
+		JLabel label = new JLabel(next_villain.getName());
 		label.setBounds(6, 6, 243, 16);
 		enemy_health_bar.add(label);
 		
@@ -120,6 +123,7 @@ public class Battle_Panel extends JPanel {
 		
 		JButton btnNewButton = new JButton("Attack!");
 		btnNewButton.setBounds(295, 16, 171, 23);
+		btnNewButton.addActionListener(new ButtonListener());
 		controls.add(btnNewButton);
 	}
 	
@@ -130,10 +134,25 @@ public class Battle_Panel extends JPanel {
 			//pass in move name then do things
 			JButton button = (JButton)e.getSource();
 			
-			lblSelectedMove.setText("Selected Move: " + button.getText());
-			lblMoveCost.setText("Move Cost: " + c.getAttackValue(button.getText()));
-			lblDamage.setText("Damage: " + c.getAttackStrength(button.getText()));
-			
+			if(button.getText().equals("Attack!")) {
+				battle_controller.attack(c, next_villain, lblSelectedMove.getText());
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if(next_villain.getHealth() <= 0)
+					System.out.println("Enemy died what to do now");
+				battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
+				if(c.getHealth() <= 0)
+					System.out.println("Player died what to do now");
+			}
+			else {
+				lblSelectedMove.setText("Selected Move: " + button.getText());
+				lblMoveCost.setText("Move Cost: " + c.getAttackValue(button.getText()));
+				lblDamage.setText("Damage: " + c.getAttackStrength(button.getText()));
+			}
 			
 			
 			

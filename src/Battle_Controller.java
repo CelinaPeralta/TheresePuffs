@@ -27,7 +27,7 @@ public class Battle_Controller {
 	}
 
 	public Character getCharacter() {
-		int name = (int) Math.random() * (VILLAIN_NAMES.size() - 1);
+		int name = (int) (Math.random() * (VILLAIN_NAMES.size() - 1));
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
 		return v;

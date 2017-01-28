@@ -82,6 +82,12 @@ public class Character {
 	public void takeDamage(int damage) {
 		health -= damage;
 	}
+	
+	public String getRandomAttack() {
+		Random rand = new Random();
+		int num = rand.nextInt()*attack_list.length;
+		return attack_list[num];
+	}
 
 	@Override
 	public String toString() {

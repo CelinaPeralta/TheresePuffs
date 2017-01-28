@@ -19,15 +19,12 @@ public class Master_Frame extends JFrame {
 	private static String CHARACTER_NAME;
 	private static Character c;
 	
-	Battle_Controller battle_controller = new Battle_Controller();
 	
-	
-	private Character next_villain = battle_controller.getCharacter();
 
 	
 	Main_Panel main_panel = new Main_Panel();
 	
-	Battle_Panel battle_panel = new Battle_Panel(c, next_villain);
+	Battle_Panel battle_panel = new Battle_Panel(c);
 	Stats_Panel stats_panel = new Stats_Panel(c);
 
 	CardLayout layout = new CardLayout();
@@ -66,14 +63,14 @@ public class Master_Frame extends JFrame {
 	}
 	
 	private void updatePanels(){
-		cardPanel.remove(battle_panel);
-		cardPanel.remove(stats_panel);
-		
-		battle_panel = new Battle_Panel(c, next_villain);
-		stats_panel = new Stats_Panel(c);
-		
-		cardPanel.add(battle_panel, "BATTLE");
-		cardPanel.add(stats_panel, "STATS");
+//		cardPanel.remove(battle_panel);
+//		cardPanel.remove(stats_panel);
+//		
+//		battle_panel = new Battle_Panel(c);
+//		stats_panel = new Stats_Panel(c);
+//		
+//		cardPanel.add(battle_panel, "BATTLE");
+//		cardPanel.add(stats_panel, "STATS");
 	}
 	
 
