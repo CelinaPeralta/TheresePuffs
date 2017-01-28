@@ -139,6 +139,7 @@ public class Battle_Panel extends JPanel {
 		btnNewButton.addActionListener(new ButtonListener());
 		controls.add(btnNewButton);
 	}
+	
 
 	public class ButtonListener implements ActionListener {
 
@@ -157,6 +158,7 @@ public class Battle_Panel extends JPanel {
 				lblDie.setText("  Roll 1: " + Integer.toString(battle_controller.getRoll1()));
 				lblDie2.setText("  Roll 2: " + Integer.toString(battle_controller.getRoll2()));
 				lblSum.setText("Sum: " + Integer.toString(battle_controller.getTotal()));
+				lblHitProbability.setText(String.format("Hit Probability: %.2f", battle_controller.calculateHitProbability(c, next_villain)));
 
 				progressBar.setValue(c.getHealth());
 				progressBar_1.setValue(next_villain.getHealth());

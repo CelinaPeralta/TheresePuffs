@@ -11,11 +11,10 @@ public class Battle_Controller {
 	// Possibly make character list
 	final ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
 	private Random rand = new Random();
-	
+
 	private int roll1 = 0;
 	private int roll2 = 0;
 	private int total = 0;
-	
 
 	public Battle_Controller() {
 
@@ -45,12 +44,13 @@ public class Battle_Controller {
 		roll2 = dieRoll();
 		total = roll1 + roll2;
 
-//		// For debugging
-//		System.out.println("Attack name: " + attack_name);
-//		System.out.println(attacker.getName());
-//		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
+		// // For debugging
+		// System.out.println("Attack name: " + attack_name);
+		// System.out.println(attacker.getName());
+		// System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ",
+		// Total: " + total);
 
-		if (total >= Character.getAttackValue(attack_name)) { 
+		if (total >= Character.getAttackValue(attack_name)) {
 			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
 			int hit_attempt = rand.nextInt(total_dexterity);
 
@@ -65,18 +65,30 @@ public class Battle_Controller {
 
 	}
 
+	
+	//this is bad
+	public double calculateHitProbability(Character attacker, Character attackee) {
+		double prob;
+		
+		prob = (attacker.getAccuracy())/(attackee.getAgility());
+		
+		return prob;
+	}
+
 	public int dieRoll() {
 		// return some number 1-6
 		return rand.nextInt(6) + 1;
 	}
-	
-	public int getRoll1(){
+
+	public int getRoll1() {
 		return roll1;
 	}
-	public int getRoll2(){
+
+	public int getRoll2() {
 		return roll2;
 	}
-	public int getTotal(){
+
+	public int getTotal() {
 		return total;
 	}
 

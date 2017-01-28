@@ -16,7 +16,7 @@ public class Character {
 	private String[] attack_list = new String[4];
 
 	// Battle-related attributes
-	private int max_health = 100, health = 100, attack = 10, agility = 10, accuracy = 50;
+	private int max_health = 100, health = 100, attack = 10, agility = 20, accuracy = 50;
 
 	// Gameplay-oriented attributes
 	private int puffs = 0, level = 1, experience = 0, att_points = 5;
