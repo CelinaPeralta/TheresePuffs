@@ -58,6 +58,17 @@ public class Character {
 
 	}
 
+	public void clearAttack_list(){
+		for(int i = 0; i < attack_list.length; i++){
+			attack_list[i] = null;
+		}
+	}
+	
+	//this is v bad code
+	public void addAttack(String attack_name, int index){
+		attack_list[index] = attack_name;
+	}
+	
 	public ArrayList<String> getAllAttacks() {
 		return all_attacks;
 	}

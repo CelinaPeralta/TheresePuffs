@@ -13,7 +13,7 @@ public class Stats_Panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	JComboBox atts;
+	JComboBox atts, move1, move2, move3, move4;
 	JLabel lblAttPts, lblHealth, lblAgility, lblAccuracy, lblAttack, lblExp, lblPuffs, lblLevel;
 	Character c;
 
@@ -85,29 +85,34 @@ public class Stats_Panel extends JPanel {
 		move1.setBounds(321, 205, 156, 27);
 		for (String s : c.getAllAttacks())
 			move1.addItem(s);
+		move1.setSelectedItem(c.getAttack_list()[0]);
 		add(move1);
 
 		JComboBox move2 = new JComboBox();
 		move2.setBounds(321, 270, 156, 27);
 		for (String s : c.getAllAttacks())
 			move2.addItem(s);
+		move1.setSelectedItem(c.getAttack_list()[1]);
 		add(move2);
 
 		JComboBox move3 = new JComboBox();
 		move3.setBounds(321, 322, 156, 27);
 		for (String s : c.getAllAttacks())
 			move3.addItem(s);
+		move1.setSelectedItem(c.getAttack_list()[2]);
 		add(move3);
 
 		JComboBox move4 = new JComboBox();
 		move4.setBounds(321, 381, 156, 27);
 		for (String s : c.getAllAttacks())
 			move4.addItem(s);
+		move1.setSelectedItem(c.getAttack_list()[3]);
 		add(move4);
 
 		JLabel lblMove = new JLabel("Move 1:");
 		lblMove.setBounds(248, 209, 61, 16);
 		add(lblMove);
+		
 
 		JLabel lblMove_1 = new JLabel("Move 2:");
 		lblMove_1.setBounds(248, 269, 61, 16);
@@ -182,6 +187,14 @@ public class Stats_Panel extends JPanel {
 				}
 				System.out.println(c.getAtt_points());
 				updateLabels();
+			}
+			
+			if (button.getText() == "Save") {
+				c.clearAttack_list();
+				c.addAttack((String)move1.getSelectedItem(), 0);
+				c.addAttack((String)move2.getSelectedItem(), 1);
+				c.addAttack((String)move3.getSelectedItem(), 2);
+				c.addAttack((String)move4.getSelectedItem(), 3);
 			}
 
 		}
