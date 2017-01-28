@@ -73,7 +73,6 @@ public class Character {
 	public static int getAttackValue(String a) {
 
 		int index = all_attacks.indexOf(a);
-		System.out.println("Attack index: " + index);
 
 		return all_attacks_strengths.get(index)[1];
 
@@ -176,6 +175,17 @@ public class Character {
 	public String[] getAttack_list() {
 
 		return attack_list;
+	}
+
+	// stupid level up system that we should change later
+	public void checkLevel() {
+		if (experience - 30 > 0) {
+			System.out.println("lmao u leveled up");
+			level++;
+			puffs += 20;
+			att_points += 2;
+			experience -= 30;
+		}
 	}
 
 }

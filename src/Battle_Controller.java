@@ -45,12 +45,12 @@ public class Battle_Controller {
 		roll2 = dieRoll();
 		total = roll1 + roll2;
 
-		// For debugging
-		System.out.println("Attack name: " + attack_name);
-		System.out.println(attacker.getName());
-		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
+//		// For debugging
+//		System.out.println("Attack name: " + attack_name);
+//		System.out.println(attacker.getName());
+//		System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ", Total: " + total);
 
-		if (total >= Character.getAttackValue(attack_name)) { //why is this breaking everything
+		if (total >= Character.getAttackValue(attack_name)) { 
 			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
 			int hit_attempt = rand.nextInt(total_dexterity);
 

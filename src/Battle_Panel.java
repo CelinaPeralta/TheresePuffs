@@ -168,7 +168,15 @@ public class Battle_Panel extends JPanel {
 					e1.printStackTrace();
 				}
 				if (next_villain.getHealth() <= 0) {
-					System.out.println("Enemy died what to do now");
+					System.out.println("Enemy died, added 10 puffs");
+					
+					
+					//Change player stats
+					c.setPuffs(c.getPuffs() + 10);
+					c.setAtt_points(c.getAtt_points() + 2);
+					c.setExperience(c.getExperience() + 10);
+					c.checkLevel();
+					
 					btnNewButton.setEnabled(false);
 				}
 				battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
@@ -178,8 +186,8 @@ public class Battle_Panel extends JPanel {
 				}
 			} else {
 				lblSelectedMove.setText("Selected Move: " + button.getText());
-				lblMoveCost.setText("Move Cost: " + c.getAttackValue(button.getText()));
-				lblDamage.setText("Damage: " + c.getAttackStrength(button.getText()));
+				lblMoveCost.setText("Move Cost: " + Character.getAttackValue(button.getText()));
+				lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText()));
 			}
 
 		}
