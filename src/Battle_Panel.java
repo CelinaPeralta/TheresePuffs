@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -92,6 +93,12 @@ public class Battle_Panel extends JPanel {
 		progressBar_1.setMinimum(0);
 		display.add(progressBar_1);
 		progressBar_1.setValue(next_villain.getMax_health());
+		
+		JLabel character_img = new JLabel("");
+		ImageIcon image = new ImageIcon("images/TheDinosaur.png");
+		character_img.setIcon(image);
+		character_img.setBounds(81, 103, 78, 108);
+		display.add(character_img);
 
 		JPanel controls = new JPanel();
 		controls.setBackground(new Color(245, 245, 245));
