@@ -21,10 +21,12 @@ public class Battle_Panel extends JPanel {
 	private JPanel player_name, enemy_name;
 	private JButton btnNewButton;
 	private JProgressBar progressBar, progressBar_1;
+	private String[] current_attacks;
 	private boolean battle_enabled = true;
 	Battle_Controller battle_controller = new Battle_Controller();
 
 	private Character next_villain = battle_controller.getCharacter();
+	private JButton attack1, attack2, attack3, attack4;
 
 	/**
 	 * Create the panel.
@@ -119,24 +121,24 @@ public class Battle_Panel extends JPanel {
 		controls.setLayout(null);
 
 		// Pass in attack names
-		String[] current_attacks = c.getAttack_list();
+		current_attacks = c.getAttack_list();
 
-		JButton attack1 = new JButton(current_attacks[0]);
+		attack1 = new JButton(current_attacks[0]);
 		attack1.setBounds(33, 92, 171, 29);
 		attack1.addActionListener(new ButtonListener());
 		controls.add(attack1);
 
-		JButton attack2 = new JButton(current_attacks[1]);
+		attack2 = new JButton(current_attacks[1]);
 		attack2.setBounds(33, 133, 171, 29);
 		attack2.addActionListener(new ButtonListener());
 		controls.add(attack2);
 
-		JButton attack3 = new JButton(current_attacks[2]);
+		attack3 = new JButton(current_attacks[2]);
 		attack3.setBounds(295, 92, 171, 29);
 		attack3.addActionListener(new ButtonListener());
 		controls.add(attack3);
 
-		JButton attack4 = new JButton(current_attacks[3]);
+		attack4 = new JButton(current_attacks[3]);
 		attack4.setBounds(295, 133, 171, 29);
 		attack4.addActionListener(new ButtonListener());
 		controls.add(attack4);
@@ -157,6 +159,18 @@ public class Battle_Panel extends JPanel {
 		btnNewButton.setBounds(295, 16, 171, 23);
 		btnNewButton.addActionListener(new ButtonListener());
 		controls.add(btnNewButton);
+		updateBattlePanel();
+	}
+
+	//place all things that should be updated here
+	public void updateBattlePanel() {
+		current_attacks = c.getAttack_list();
+		attack1.setText(current_attacks[0]);
+		attack2.setText(current_attacks[1]);
+		attack3.setText(current_attacks[2]);
+		attack4.setText(current_attacks[3]);
+		pTxtLbl.setText(c.getHealth() + "/" + c.getMax_health());
+		
 	}
 
 	public boolean isBattleEnabled() {

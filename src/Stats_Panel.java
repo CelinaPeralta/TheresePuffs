@@ -13,7 +13,7 @@ public class Stats_Panel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	JComboBox atts, move1, move2, move3, move4;
+	JComboBox<String> atts, move1, move2, move3, move4;
 	JLabel lblAttPts, lblHealth, lblAgility, lblAccuracy, lblAttack, lblExp, lblPuffs, lblLevel;
 	Character c;
 
@@ -73,7 +73,7 @@ public class Stats_Panel extends JPanel {
 		subtractPt.addActionListener(new ButtonListener());
 		add(subtractPt);
 
-		atts = new JComboBox();
+		atts = new JComboBox<String>();
 		atts.setBounds(30, 342, 104, 27);
 		atts.addItem("Health");
 		atts.addItem("Attack");
@@ -81,38 +81,37 @@ public class Stats_Panel extends JPanel {
 		atts.addItem("Accuracy");
 		add(atts);
 
-		JComboBox move1 = new JComboBox();
+		JComboBox<String> move1 = new JComboBox<String>();
 		move1.setBounds(321, 205, 156, 27);
 		for (String s : c.getAllAttacks())
 			move1.addItem(s);
 		move1.setSelectedItem(c.getAttack_list()[0]);
 		add(move1);
 
-		JComboBox move2 = new JComboBox();
+		JComboBox<String> move2 = new JComboBox<String>();
 		move2.setBounds(321, 270, 156, 27);
 		for (String s : c.getAllAttacks())
 			move2.addItem(s);
-		move1.setSelectedItem(c.getAttack_list()[1]);
+		move2.setSelectedItem(c.getAttack_list()[1]);
 		add(move2);
 
-		JComboBox move3 = new JComboBox();
+		JComboBox<String> move3 = new JComboBox<String>();
 		move3.setBounds(321, 322, 156, 27);
 		for (String s : c.getAllAttacks())
 			move3.addItem(s);
-		move1.setSelectedItem(c.getAttack_list()[2]);
+		move3.setSelectedItem(c.getAttack_list()[2]);
 		add(move3);
 
-		JComboBox move4 = new JComboBox();
+		JComboBox<String> move4 = new JComboBox<String>();
 		move4.setBounds(321, 381, 156, 27);
 		for (String s : c.getAllAttacks())
 			move4.addItem(s);
-		move1.setSelectedItem(c.getAttack_list()[3]);
+		move4.setSelectedItem(c.getAttack_list()[3]);
 		add(move4);
 
 		JLabel lblMove = new JLabel("Move 1:");
 		lblMove.setBounds(248, 209, 61, 16);
 		add(lblMove);
-		
 
 		JLabel lblMove_1 = new JLabel("Move 2:");
 		lblMove_1.setBounds(248, 269, 61, 16);
@@ -130,18 +129,24 @@ public class Stats_Panel extends JPanel {
 		btnSave.setBounds(192, 435, 117, 29);
 		add(btnSave);
 
+		updateLabels();
+
 	}
-	
-	private void updateLabels(){
-		lblAttPts.setText("Attribute Points: " + c.getAtt_points());;
+
+	private void updateLabels() {
+		lblAttPts.setText("Attribute Points: " + c.getAtt_points());
 		lblHealth.setText("Health: " + c.getMax_health());
-		lblAgility.setText("Agility: " + c.getAgility()); 
+		lblAgility.setText("Agility: " + c.getAgility());
 		lblAccuracy.setText("Accuracy: " + c.getAccuracy());
-		lblAttack.setText("Attack: " + c.getAttack()); 
-		lblExp.setText("Experience: " + c.getExperience()); 
-		lblPuffs.setText("Puffs: " + c.getPuffs()); 
+		lblAttack.setText("Attack: " + c.getAttack());
+		lblExp.setText("Experience: " + c.getExperience());
+		lblPuffs.setText("Puffs: " + c.getPuffs());
 		lblLevel.setText("Level: " + c.getLevel());
-		
+		 move1.setSelectedItem(c.getAttack_list()[0]);
+		 move2.setSelectedItem(c.getAttack_list()[1]);
+		 move3.setSelectedItem(c.getAttack_list()[2]);
+		 move4.setSelectedItem(c.getAttack_list()[3]);
+
 	}
 
 	public class ButtonListener implements ActionListener {
@@ -188,13 +193,14 @@ public class Stats_Panel extends JPanel {
 				System.out.println(c.getAtt_points());
 				updateLabels();
 			}
-			
+
 			if (button.getText() == "Save") {
 				c.clearAttack_list();
-				c.addAttack((String)move1.getSelectedItem(), 0);
-				c.addAttack((String)move2.getSelectedItem(), 1);
-				c.addAttack((String)move3.getSelectedItem(), 2);
-				c.addAttack((String)move4.getSelectedItem(), 3);
+				c.addAttack((String) move1.getSelectedItem(), 0);
+				c.addAttack((String) move2.getSelectedItem(), 1);
+				c.addAttack((String) move3.getSelectedItem(), 2);
+				c.addAttack((String) move4.getSelectedItem(), 3);
+				updateLabels();
 			}
 
 		}

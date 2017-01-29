@@ -18,12 +18,9 @@ public class Master_Frame extends JFrame {
 
 	private static String CHARACTER_NAME;
 	private static Character c;
-	
-	
 
-	
 	Main_Panel main_panel = new Main_Panel();
-	
+
 	Battle_Panel battle_panel = new Battle_Panel(c);
 	Stats_Panel stats_panel = new Stats_Panel(c);
 	Shop_Panel shop_panel = new Shop_Panel(c);
@@ -38,12 +35,12 @@ public class Master_Frame extends JFrame {
 		JButton shop_button = new JButton("Shop");
 		JButton stats_button = new JButton("Stats");
 		JPanel buttonsPanel = new JPanel();
-		
+
 		buttonsPanel.add(main_button);
 		buttonsPanel.add(fight_button);
 		buttonsPanel.add(shop_button);
 		buttonsPanel.add(stats_button);
-		
+
 		fight_button.addActionListener(new ButtonListener());
 		shop_button.addActionListener(new ButtonListener());
 		stats_button.addActionListener(new ButtonListener());
@@ -64,29 +61,26 @@ public class Master_Frame extends JFrame {
 		frame.setVisible(true);
 
 	}
-	
-	private void updatePanels(){
-//		cardPanel.remove(battle_panel);
+
+	private void updatePanels() {
+
 		cardPanel.remove(stats_panel);
-//		
-//		battle_panel = new Battle_Panel(c);
 		stats_panel = new Stats_Panel(c);
-//		
-//		cardPanel.add(battle_panel, "BATTLE");
 		cardPanel.add(stats_panel, "STATS");
+
+		if (!battle_panel.isBattleEnabled())
+			battle_panel.setBattleEnabled(true);
+		
 	}
-	
 
 	private class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
 			String panel_name = "";
-			
+
 			if ("Fight".equals(command)) {
-				updatePanels();
 				panel_name = "BATTLE";
-				battle_panel.setBattleEnabled(true);
 			} else if ("Stats".equals(command)) {
 				panel_name = "STATS";
 			} else if ("Shop".equals(command)) {
@@ -95,8 +89,9 @@ public class Master_Frame extends JFrame {
 				panel_name = "MAIN";
 			}
 			updatePanels();
-			layout.show(cardPanel, panel_name);
 			
+			layout.show(cardPanel, panel_name);
+
 		}
 	}
 

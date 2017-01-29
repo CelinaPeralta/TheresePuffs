@@ -16,13 +16,14 @@ public class Shop_Panel extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel);
+		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
 		add(panel_1);
 		panel_1.setLayout(null);
 		
 		JButton btnGamble = new JButton("Gamble");
-		btnGamble.setBounds(66, 411, 117, 29);
+		btnGamble.setBounds(66, 410, 117, 29);
 		panel_1.add(btnGamble);
 		
 		JLabel lblDie = new JLabel("Die 1:");
