@@ -18,12 +18,12 @@ public class Battle_Controller {
 	private int roll1 = 0;
 	private int roll2 = 0;
 	private int total = 0;
-	
+
 	private boolean battle_enabled = true;
 
 	public Battle_Controller() {
 
-		VILLAIN_NAMES.add("Cenpai");
+		// VILLAIN_NAMES.add("Cenpai");
 		VILLAIN_NAMES.add("Selena Persalta");
 		VILLAIN_NAMES.add("Sillina Purralta");
 		VILLAIN_NAMES.add("Assorted Cans");
@@ -41,39 +41,52 @@ public class Battle_Controller {
 		int name = (int) (Math.random() * (VILLAIN_NAMES.size() - 1));
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
-//		v.setAccuracy((int)Math.random()*50);
-//		v.setAgility((int)Math.random()*50);
 		v.resetHealth();
 		return v;
 	}
 
+	public Character getBoss(Character c) {
+		Character b = new Character("Cenpai");
+		b.setAccuracy(c.getAccuracy() + (int) Math.random() * 10);
+		b.setAgility(c.getAgility() + (int) Math.random() * 10);
+		b.setMax_health(c.getMax_health() + (int) Math.random() * 50);
+		b.resetHealth();
+
+		return b;
+
+	}
+
 	// pass in the selected attack through button click or something
-	public void attack(Character attacker, Character attackee, String attack_name) {
+	// 1 if successful, 0 if a miss, -1 if attack not executed
+	public int attack(Character attacker, Character attackee, String attack_name) {
 
 		roll1 = dieRoll();
 		roll2 = dieRoll();
 		total = roll1 + roll2;
 
 		if (total >= Character.getAttackValue(attack_name)) {
-			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
-			int hit_attempt = rand.nextInt(total_dexterity);
+			int max_random_num = attacker.getAccuracy() + attackee.getAgility();
+			int hit_attempt = rand.nextInt(max_random_num);
 
 			if (hit_attempt <= attacker.getAccuracy()) {
 				attackee.takeDamage(Character.getAttackStrength(attack_name));
+				return 1;
+			} else {
+				System.out.println(attacker.getName() + " missed " + attackee.getName());
+				return 0;
 			}
 
 		} else {
-			// not gonna be println but just for now
-			System.out.println(attacker.getName() + " missed " + attackee.getName());
+			System.out.println("Sum not high enough.");
+			return -1;
 		}
-
 	}
 
 	// this is bad
 	public double calculateHitProbability(Character attacker, Character attackee) {
 		double prob;
 
-		prob = attacker.getAccuracy() / (double)(attacker.getAccuracy() + attackee.getAgility());
+		prob = attacker.getAccuracy() / (double) (attacker.getAccuracy() + attackee.getAgility());
 
 		return prob * 10;
 	}
@@ -98,16 +111,16 @@ public class Battle_Controller {
 	public void next_level() {
 		current_level++;
 	}
-	
-	public int getCurrentLevel(){
+
+	public int getCurrentLevel() {
 		return current_level;
 	}
-	
-	public boolean isBattleEnabled(){
+
+	public boolean isBattleEnabled() {
 		return battle_enabled;
 	}
-	
-	public void setBattleEnabled(boolean b){
+
+	public void setBattleEnabled(boolean b) {
 		battle_enabled = b;
 	}
 

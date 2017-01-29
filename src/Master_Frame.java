@@ -87,7 +87,6 @@ public class Master_Frame extends JFrame {
 				panel_name = "MAIN";
 			}
 			updatePanels();
-			
 			layout.show(cardPanel, panel_name);
 
 		}
