@@ -9,7 +9,10 @@ import java.util.Random;
 public class Battle_Controller {
 
 	// Possibly make character list
-	final ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
+	private ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
+	public final int LEVELS;
+	
+	private int current_level = 1;
 	private Random rand = new Random();
 
 	private int roll1 = 0;
@@ -27,6 +30,8 @@ public class Battle_Controller {
 		VILLAIN_NAMES.add("Celili");
 		VILLAIN_NAMES.add("Celulu");
 		VILLAIN_NAMES.add("MattyBRaps");
+		
+		LEVELS = VILLAIN_NAMES.size();
 
 	}
 
@@ -90,6 +95,10 @@ public class Battle_Controller {
 
 	public int getTotal() {
 		return total;
+	}
+	
+	public void next_level(){
+		current_level++;
 	}
 
 }
