@@ -56,6 +56,7 @@ public class Master_Frame extends JFrame {
 
 		JFrame frame = new JFrame();
 		frame.setSize(500, 550);
+		frame.setResizable(false);
 		frame.add(cardPanel);
 		frame.add(buttonsPanel, BorderLayout.SOUTH);
 		frame.setLocationRelativeTo(null);

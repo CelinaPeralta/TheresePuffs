@@ -11,7 +11,7 @@ public class Battle_Controller {
 	// Possibly make character list
 	private ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
 	public final int LEVELS;
-	
+
 	private int current_level = 1;
 	private Random rand = new Random();
 
@@ -30,7 +30,7 @@ public class Battle_Controller {
 		VILLAIN_NAMES.add("Celili");
 		VILLAIN_NAMES.add("Celulu");
 		VILLAIN_NAMES.add("MattyBRaps");
-		
+
 		LEVELS = VILLAIN_NAMES.size();
 
 	}
@@ -49,12 +49,6 @@ public class Battle_Controller {
 		roll2 = dieRoll();
 		total = roll1 + roll2;
 
-		// // For debugging
-		// System.out.println("Attack name: " + attack_name);
-		// System.out.println(attacker.getName());
-		// System.out.println("Roll 1: " + roll1 + ", Roll 2: " + roll2 + ",
-		// Total: " + total);
-
 		if (total >= Character.getAttackValue(attack_name)) {
 			int total_dexterity = attacker.getAccuracy() + attackee.getAgility();
 			int hit_attempt = rand.nextInt(total_dexterity);
@@ -70,14 +64,13 @@ public class Battle_Controller {
 
 	}
 
-	
-	//this is bad
+	// this is bad
 	public double calculateHitProbability(Character attacker, Character attackee) {
 		double prob;
-		
-		prob = (attacker.getAccuracy())/(attackee.getAgility());
-		
-		return prob;
+
+		prob = attacker.getAccuracy() / (attacker.getAccuracy() + attackee.getAgility());
+
+		return prob * 10;
 	}
 
 	public int dieRoll() {
@@ -96,8 +89,8 @@ public class Battle_Controller {
 	public int getTotal() {
 		return total;
 	}
-	
-	public void next_level(){
+
+	public void next_level() {
 		current_level++;
 	}
 

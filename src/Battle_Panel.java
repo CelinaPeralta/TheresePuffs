@@ -178,20 +178,16 @@ public class Battle_Panel extends JPanel {
 				}
 				if (next_villain.getHealth() <= 0) {
 					System.out.println("Enemy died, added 10 puffs");
-					
-					
 					//Change player stats
 					c.setPuffs(c.getPuffs() + 10);
 					c.setAtt_points(c.getAtt_points() + 2);
 					c.setExperience(c.getExperience() + 10);
 					c.checkLevel();
 					battle_controller.next_level();
-					btnNewButton.setEnabled(false);
 				}
 				battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
 				if (c.getHealth() <= 0) {
 					System.out.println("Player died what to do now");
-					btnNewButton.setEnabled(false);
 					battle_controller.next_level();
 				}
 			} else {
