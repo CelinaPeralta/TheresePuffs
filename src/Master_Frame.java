@@ -26,6 +26,7 @@ public class Master_Frame extends JFrame {
 	
 	Battle_Panel battle_panel = new Battle_Panel(c);
 	Stats_Panel stats_panel = new Stats_Panel(c);
+	Shop_Panel shop_panel = new Shop_Panel(c);
 
 	CardLayout layout = new CardLayout();
 	JPanel cardPanel = new JPanel(layout);
@@ -51,6 +52,7 @@ public class Master_Frame extends JFrame {
 		cardPanel.add(main_panel, "MAIN");
 		cardPanel.add(battle_panel, "BATTLE");
 		cardPanel.add(stats_panel, "STATS");
+		cardPanel.add(shop_panel, "SHOP");
 
 		JFrame frame = new JFrame();
 		frame.setSize(500, 550);
@@ -86,7 +88,7 @@ public class Master_Frame extends JFrame {
 			} else if ("Stats".equals(command)) {
 				panel_name = "STATS";
 			} else if ("Shop".equals(command)) {
-				System.out.println("Make the shop");
+				panel_name = "SHOP";
 			} else {
 				panel_name = "MAIN";
 			}
