@@ -84,8 +84,9 @@ public class Battle_Panel extends JPanel {
 		progressBar.setBounds(6, 209, 255, 20);
 		progressBar.setMaximum(c.getMax_health());
 		progressBar.setMinimum(0);
-		display.add(progressBar);
 		progressBar.setValue(c.getMax_health());
+		display.add(progressBar);
+		
 
 		progressBar_1 = new JProgressBar();
 		progressBar_1.setBackground(new Color(0, 255, 0));
@@ -93,8 +94,9 @@ public class Battle_Panel extends JPanel {
 		progressBar_1.setBounds(239, 45, 255, 20);
 		progressBar_1.setMaximum(next_villain.getMax_health());
 		progressBar_1.setMinimum(0);
-		display.add(progressBar_1);
 		progressBar_1.setValue(next_villain.getMax_health());
+		display.add(progressBar_1);
+	
 		
 		JLabel character_img = new JLabel("");
 		ImageIcon image = new ImageIcon("images/TheDinosaur.png");
@@ -170,6 +172,7 @@ public class Battle_Panel extends JPanel {
 				lblHitProbability.setText(String.format("Hit Probability: %.2f", battle_controller.calculateHitProbability(c, next_villain)));
 
 				progressBar.setValue(c.getHealth());
+				System.out.println(next_villain.getHealth());
 				progressBar_1.setValue(next_villain.getHealth());
 
 				try {

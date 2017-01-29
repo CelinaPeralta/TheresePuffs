@@ -39,9 +39,9 @@ public class Battle_Controller {
 		int name = (int) (Math.random() * (VILLAIN_NAMES.size() - 1));
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
-		v.setAccuracy((int)Math.random()*50);
-		v.setAgility((int)Math.random()*50);
-		v.setMax_health((int)Math.random()*150);
+//		v.setAccuracy((int)Math.random()*50);
+//		v.setAgility((int)Math.random()*50);
+		v.resetHealth();
 		return v;
 	}
 
