@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,24 +8,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-
-import com.sun.xml.internal.ws.api.Component;
 import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class Battle_Panel extends JPanel {
 
 	private Character c;
 	private JLabel lblDie, lblSum, lblDie2, lblHitProbability, lblSelectedMove, lblMoveCost, lblDamage, eTxtLbl,
-			pTxtLbl;
+			pTxtLbl, lblCurrentLevel;
 	private JPanel player_name, enemy_name;
 	private JButton btnNewButton;
 	private JProgressBar progressBar, progressBar_1;
 	private String[] current_attacks;
-	private boolean battle_enabled = true;
+	
+
 	Battle_Controller battle_controller = new Battle_Controller();
 
-	private Character next_villain = battle_controller.getCharacter();
+	private Character next_villain = battle_controller.getVillain();
 	private JButton attack1, attack2, attack3, attack4;
+	private JLabel winLabel;
 
 	/**
 	 * Create the panel.
@@ -114,6 +114,18 @@ public class Battle_Panel extends JPanel {
 		pTxtLbl.setBounds(18, 205, 95, 16);
 		display.add(pTxtLbl);
 
+		lblCurrentLevel = new JLabel("Level " + battle_controller.getCurrentLevel());
+		lblCurrentLevel.setForeground(Color.WHITE);
+		lblCurrentLevel.setBounds(18, 17, 61, 16);
+		display.add(lblCurrentLevel);
+		
+		winLabel = new JLabel("");
+		winLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		winLabel.setForeground(Color.WHITE);
+		winLabel.setBounds(203, 133, 95, 32);
+		winLabel.setVisible(false);
+		display.add(winLabel);
+
 		JPanel controls = new JPanel();
 		controls.setBackground(new Color(245, 245, 245));
 		controls.setBounds(0, 321, 500, 179);
@@ -162,7 +174,7 @@ public class Battle_Panel extends JPanel {
 		updateBattlePanel();
 	}
 
-	//place all things that should be updated here
+	// place all things that should be updated here
 	public void updateBattlePanel() {
 		current_attacks = c.getAttack_list();
 		attack1.setText(current_attacks[0]);
@@ -170,16 +182,16 @@ public class Battle_Panel extends JPanel {
 		attack3.setText(current_attacks[2]);
 		attack4.setText(current_attacks[3]);
 		pTxtLbl.setText(c.getHealth() + "/" + c.getMax_health());
+		lblCurrentLevel.setText("Level " + battle_controller.getCurrentLevel());
+		if(!battle_controller.isBattleEnabled()){
+			battle_controller.setBattleEnabled(true);
+			next_villain = battle_controller.getVillain();
+			eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
+			winLabel.setVisible(false);
+		}
 		
 	}
 
-	public boolean isBattleEnabled() {
-		return battle_enabled;
-	}
-
-	public void setBattleEnabled(boolean b) {
-		battle_enabled = b;
-	}
 
 	public class ButtonListener implements ActionListener {
 
@@ -188,68 +200,74 @@ public class Battle_Panel extends JPanel {
 			// pass in move name then do things
 			JButton button = (JButton) e.getSource();
 
-			if (button.getText().equals("Attack!")) {
+			if (battle_controller.isBattleEnabled()) {
+				if (button.getText().equals("Attack!")) {
 
-				// Attack
-				battle_controller.attack(c, next_villain,
-						lblSelectedMove.getText().substring("Selected Move: ".length()));
+					// Attack
+					battle_controller.attack(c, next_villain,
+							lblSelectedMove.getText().substring("Selected Move: ".length()));
 
-				// Set labels
-				lblDie.setText("  Roll 1: " + Integer.toString(battle_controller.getRoll1()));
-				lblDie2.setText("  Roll 2: " + Integer.toString(battle_controller.getRoll2()));
-				lblSum.setText("Sum: " + Integer.toString(battle_controller.getTotal()));
-				lblHitProbability.setText(String.format("Hit Probability: %.2f",
-						battle_controller.calculateHitProbability(c, next_villain)));
+					// Set labels
+					lblDie.setText("  Roll 1: " + Integer.toString(battle_controller.getRoll1()));
+					lblDie2.setText("  Roll 2: " + Integer.toString(battle_controller.getRoll2()));
+					lblSum.setText("Sum: " + Integer.toString(battle_controller.getTotal()));
+					lblHitProbability.setText(String.format("Hit Probability: %.2f",
+							battle_controller.calculateHitProbability(c, next_villain)));
 
-				progressBar.setValue(c.getHealth());
-				System.out.println(c.getHealth());
-				progressBar_1.setValue(next_villain.getHealth());
-				System.out.println(next_villain.getHealth());
-				pTxtLbl.setText(c.getHealth() + "/" + c.getMax_health());
-				eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
+					progressBar.setValue(c.getHealth());
+					System.out.println(c.getHealth());
+					progressBar_1.setValue(next_villain.getHealth());
+					System.out.println(next_villain.getHealth());
+					pTxtLbl.setText(c.getHealth() + "/" + c.getMax_health());
+					eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
 
-				try {
-					Thread.sleep(50);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				if (next_villain.getHealth() <= 0) {
-					System.out.println("Enemy died, added 10 puffs");
-					// Change player stats
-					c.setPuffs(c.getPuffs() + 10);
-					c.setAtt_points(c.getAtt_points() + 2);
-					c.setExperience(c.getExperience() + 10);
-					c.checkLevel();
-					c.resetHealth();
-					battle_controller.next_level();
-					next_villain = battle_controller.getCharacter();
-
-					// wat
-					for (java.awt.Component jc : enemy_name.getComponents()) {
-						if (jc instanceof JLabel) {
-							((JLabel) jc).setText(next_villain.getName());
-						}
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+					if (next_villain.getHealth() <= 0) {
+						System.out.println("Enemy died, added 10 puffs");
+						// Change player stats
+						c.setPuffs(c.getPuffs() + 10);
+						c.setAtt_points(c.getAtt_points() + 2);
+						c.setExperience(c.getExperience() + 10);
+						c.checkLevel();
+						c.resetHealth();
+						battle_controller.next_level();
+						next_villain = battle_controller.getVillain();
 
-					setBattleEnabled(false);
-					JLabel lbl = (JLabel) enemy_name.getComponent(0);
-					lbl.setText(next_villain.getName());
+						// wat
+//						for (java.awt.Component jc : enemy_name.getComponents()) {
+//							if (jc instanceof JLabel) {
+//								((JLabel) jc).setText(next_villain.getName());
+//							}
+//						}
+
+						battle_controller.setBattleEnabled(false);
+//						JLabel lbl = (JLabel) enemy_name.getComponent(0);
+//						lbl.setText(next_villain.getName());
+						winLabel.setVisible(true);
+						winLabel.setText("VICTORY!");
+					} else {
+						battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
+					}
+					if (c.getHealth() <= 0) {
+						System.out.println("Player died what to do now");
+						c.resetHealth();
+						next_villain.resetHealth();
+						battle_controller.setBattleEnabled(false);
+						winLabel.setText("DEFEAT!");
+						winLabel.setVisible(true);
+					}
 				} else {
-					battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
+					lblSelectedMove.setText("Selected Move: " + button.getText());
+					lblMoveCost.setText("Move Cost: " + Character.getAttackValue(button.getText()));
+					lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText()));
 				}
-				if (c.getHealth() <= 0) {
-					System.out.println("Player died what to do now");
-					c.resetHealth();
-					next_villain.resetHealth();
-					setBattleEnabled(false);
-				}
-			} else {
-				lblSelectedMove.setText("Selected Move: " + button.getText());
-				lblMoveCost.setText("Move Cost: " + Character.getAttackValue(button.getText()));
-				lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText()));
-			}
 
+			}
 		}
 	}
 }

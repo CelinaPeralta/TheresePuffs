@@ -18,6 +18,8 @@ public class Battle_Controller {
 	private int roll1 = 0;
 	private int roll2 = 0;
 	private int total = 0;
+	
+	private boolean battle_enabled = true;
 
 	public Battle_Controller() {
 
@@ -35,7 +37,7 @@ public class Battle_Controller {
 
 	}
 
-	public Character getCharacter() {
+	public Character getVillain() {
 		int name = (int) (Math.random() * (VILLAIN_NAMES.size() - 1));
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
@@ -95,6 +97,18 @@ public class Battle_Controller {
 
 	public void next_level() {
 		current_level++;
+	}
+	
+	public int getCurrentLevel(){
+		return current_level;
+	}
+	
+	public boolean isBattleEnabled(){
+		return battle_enabled;
+	}
+	
+	public void setBattleEnabled(boolean b){
+		battle_enabled = b;
 	}
 
 }
