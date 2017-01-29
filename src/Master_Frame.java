@@ -67,7 +67,7 @@ public class Master_Frame extends JFrame {
 		cardPanel.remove(stats_panel);
 		stats_panel = new Stats_Panel(c);
 		cardPanel.add(stats_panel, "STATS");
-
+		battle_panel.updateBattlePanel();
 		if (!battle_panel.isBattleEnabled())
 			battle_panel.setBattleEnabled(true);
 		

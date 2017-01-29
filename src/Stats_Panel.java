@@ -81,28 +81,28 @@ public class Stats_Panel extends JPanel {
 		atts.addItem("Accuracy");
 		add(atts);
 
-		JComboBox<String> move1 = new JComboBox<String>();
+		move1 = new JComboBox<String>();
 		move1.setBounds(321, 205, 156, 27);
 		for (String s : c.getAllAttacks())
 			move1.addItem(s);
 		move1.setSelectedItem(c.getAttack_list()[0]);
 		add(move1);
 
-		JComboBox<String> move2 = new JComboBox<String>();
+		move2 = new JComboBox<String>();
 		move2.setBounds(321, 270, 156, 27);
 		for (String s : c.getAllAttacks())
 			move2.addItem(s);
 		move2.setSelectedItem(c.getAttack_list()[1]);
 		add(move2);
 
-		JComboBox<String> move3 = new JComboBox<String>();
+		move3 = new JComboBox<String>();
 		move3.setBounds(321, 322, 156, 27);
 		for (String s : c.getAllAttacks())
 			move3.addItem(s);
 		move3.setSelectedItem(c.getAttack_list()[2]);
 		add(move3);
 
-		JComboBox<String> move4 = new JComboBox<String>();
+		 move4 = new JComboBox<String>();
 		move4.setBounds(321, 381, 156, 27);
 		for (String s : c.getAllAttacks())
 			move4.addItem(s);
@@ -127,6 +127,7 @@ public class Stats_Panel extends JPanel {
 
 		JButton btnSave = new JButton("Save");
 		btnSave.setBounds(192, 435, 117, 29);
+		btnSave.addActionListener(new ButtonListener());
 		add(btnSave);
 
 		updateLabels();
@@ -142,6 +143,7 @@ public class Stats_Panel extends JPanel {
 		lblExp.setText("Experience: " + c.getExperience());
 		lblPuffs.setText("Puffs: " + c.getPuffs());
 		lblLevel.setText("Level: " + c.getLevel());
+
 		 move1.setSelectedItem(c.getAttack_list()[0]);
 		 move2.setSelectedItem(c.getAttack_list()[1]);
 		 move3.setSelectedItem(c.getAttack_list()[2]);
@@ -195,11 +197,11 @@ public class Stats_Panel extends JPanel {
 			}
 
 			if (button.getText() == "Save") {
-				c.clearAttack_list();
 				c.addAttack((String) move1.getSelectedItem(), 0);
 				c.addAttack((String) move2.getSelectedItem(), 1);
 				c.addAttack((String) move3.getSelectedItem(), 2);
 				c.addAttack((String) move4.getSelectedItem(), 3);
+
 				updateLabels();
 			}
 

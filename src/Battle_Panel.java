@@ -188,7 +188,7 @@ public class Battle_Panel extends JPanel {
 			// pass in move name then do things
 			JButton button = (JButton) e.getSource();
 
-			if (button.getText().equals("Attack!") && battle_enabled) {
+			if (button.getText().equals("Attack!")) {
 
 				// Attack
 				battle_controller.attack(c, next_villain,
