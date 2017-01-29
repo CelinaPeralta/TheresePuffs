@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import com.sun.xml.internal.ws.api.Component;
+
 public class Battle_Panel extends JPanel {
 
 	private Character c;
@@ -185,12 +187,20 @@ public class Battle_Panel extends JPanel {
 					c.checkLevel();
 					c.resetHealth();
 					battle_controller.next_level();
+					next_villain = battle_controller.getCharacter();
+					for (java.awt.Component jc : enemy_name.getComponents()) {
+						if (jc instanceof JLabel) {
+							((JLabel) jc).setText(next_villain.getName());
+						}
+					}
+					JLabel lbl = (JLabel)enemy_name.getComponent(0);
+					lbl.setText(next_villain.getName());
 				}
 				battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
 				if (c.getHealth() <= 0) {
 					System.out.println("Player died what to do now");
-					battle_controller.next_level();
 					c.resetHealth();
+					next_villain.resetHealth();
 				}
 			} else {
 				lblSelectedMove.setText("Selected Move: " + button.getText());

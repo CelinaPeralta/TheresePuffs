@@ -16,7 +16,13 @@ public class Character {
 	private String[] attack_list = new String[4];
 
 	// Battle-related attributes
-	private int max_health = 100, health = 100, attack = 10, agility = 20, accuracy = 50;
+	private int max_health = 100, health = 100;
+
+	private static int attack = 10;
+
+	private int agility = 20;
+
+	private int accuracy = 50;
 
 	// Gameplay-oriented attributes
 	private int puffs = 0, level = 1, experience = 0, att_points = 5;
@@ -77,7 +83,7 @@ public class Character {
 
 		int index = all_attacks.indexOf(a);
 
-		return all_attacks_strengths.get(index)[0];
+		return all_attacks_strengths.get(index)[0]*(attack/100+1);
 
 	}
 

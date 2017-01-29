@@ -67,13 +67,13 @@ public class Master_Frame extends JFrame {
 	
 	private void updatePanels(){
 //		cardPanel.remove(battle_panel);
-//		cardPanel.remove(stats_panel);
+		cardPanel.remove(stats_panel);
 //		
 //		battle_panel = new Battle_Panel(c);
-//		stats_panel = new Stats_Panel(c);
+		stats_panel = new Stats_Panel(c);
 //		
 //		cardPanel.add(battle_panel, "BATTLE");
-//		cardPanel.add(stats_panel, "STATS");
+		cardPanel.add(stats_panel, "STATS");
 	}
 	
 
