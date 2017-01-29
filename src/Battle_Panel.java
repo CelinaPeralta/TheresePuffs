@@ -183,12 +183,14 @@ public class Battle_Panel extends JPanel {
 					c.setAtt_points(c.getAtt_points() + 2);
 					c.setExperience(c.getExperience() + 10);
 					c.checkLevel();
+					c.resetHealth();
 					battle_controller.next_level();
 				}
 				battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
 				if (c.getHealth() <= 0) {
 					System.out.println("Player died what to do now");
 					battle_controller.next_level();
+					c.resetHealth();
 				}
 			} else {
 				lblSelectedMove.setText("Selected Move: " + button.getText());

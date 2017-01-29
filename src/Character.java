@@ -124,7 +124,7 @@ public class Character {
 	}
 
 	public void resetHealth() {
-		health = 100;
+		health = max_health;
 	}
 
 	public int getAttack() {

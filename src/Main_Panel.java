@@ -16,12 +16,13 @@ public class Main_Panel extends JPanel {
 
 	public Main_Panel() {
 
-		setBackground(new Color(255, 255, 255));
+		setBackground(new Color(0, 0, 0));
 
 		setSize(500, 500);
 		setLayout(null);
 
 		JLabel titleText = new JLabel("Danny the Dinosaur: The Quest for Thereese's Puffs");
+		titleText.setForeground(new Color(255, 255, 255));
 		titleText.setBounds(0, 1, 500, 66);
 		titleText.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
 		titleText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -35,8 +36,8 @@ public class Main_Panel extends JPanel {
 		add(lblNewLabel);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 433, 500, 66);
-		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 434, 500, 66);
+		panel.setBackground(new Color(0, 0, 0));
 		add(panel);
 		panel.setLayout(new GridLayout(1, 3, 0, 0));
 

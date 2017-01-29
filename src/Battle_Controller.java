@@ -39,6 +39,9 @@ public class Battle_Controller {
 		int name = (int) (Math.random() * (VILLAIN_NAMES.size() - 1));
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
+		v.setAccuracy((int)Math.random()*50);
+		v.setAgility((int)Math.random()*50);
+		v.setMax_health((int)Math.random()*150);
 		return v;
 	}
 
@@ -68,7 +71,7 @@ public class Battle_Controller {
 	public double calculateHitProbability(Character attacker, Character attackee) {
 		double prob;
 
-		prob = attacker.getAccuracy() / (attacker.getAccuracy() + attackee.getAgility());
+		prob = attacker.getAccuracy() / (double)(attacker.getAccuracy() + attackee.getAgility());
 
 		return prob * 10;
 	}
