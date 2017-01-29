@@ -86,6 +86,7 @@ public class Master_Frame extends JFrame {
 			if ("Fight".equals(command)) {
 				updatePanels();
 				panel_name = "BATTLE";
+				battle_panel.setBattleEnabled(true);
 			} else if ("Stats".equals(command)) {
 				panel_name = "STATS";
 			} else if ("Shop".equals(command)) {
