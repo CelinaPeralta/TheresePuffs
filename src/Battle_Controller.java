@@ -10,7 +10,7 @@ public class Battle_Controller {
 
 	// Possibly make character list
 	private ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
-	public final int LEVELS;
+	public final int LEVELS = 8;
 
 	private int current_level = 1;
 	private Random rand = new Random();
@@ -33,23 +33,22 @@ public class Battle_Controller {
 		VILLAIN_NAMES.add("Celulu");
 		VILLAIN_NAMES.add("MattyBRaps");
 
-		LEVELS = VILLAIN_NAMES.size();
 
 	}
 
 	public Character getVillain() {
-		int name = (int) (Math.random() * (VILLAIN_NAMES.size() - 1));
+		int name = rand.nextInt(VILLAIN_NAMES.size());
 		Character v = new Character(VILLAIN_NAMES.get(name));
-		VILLAIN_NAMES.remove(name);
+//		VILLAIN_NAMES.remove(name);
 		v.resetHealth();
 		return v;
 	}
 
 	public Character getBoss(Character c) {
 		Character b = new Character("Cenpai");
-		b.setAccuracy(c.getAccuracy() + (int) Math.random() * 10);
-		b.setAgility(c.getAgility() + (int) Math.random() * 10);
-		b.setMax_health(c.getMax_health() + (int) Math.random() * 50);
+		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * 10));
+		b.setAgility(c.getAgility() + (int) (Math.random() * 10));
+		b.setMax_health(c.getMax_health() + (int) (Math.random() * 50));
 		b.resetHealth();
 
 		return b;
@@ -72,12 +71,12 @@ public class Battle_Controller {
 				attackee.takeDamage(Character.getAttackStrength(attack_name));
 				return 1;
 			} else {
-				System.out.println(attacker.getName() + " missed " + attackee.getName());
+//				System.out.println(attacker.getName() + " missed " + attackee.getName());
 				return 0;
 			}
 
 		} else {
-			System.out.println("Sum not high enough.");
+//			System.out.println("Sum not high enough.");
 			return -1;
 		}
 	}
@@ -88,7 +87,7 @@ public class Battle_Controller {
 
 		prob = attacker.getAccuracy() / (double) (attacker.getAccuracy() + attackee.getAgility());
 
-		return prob * 10;
+		return prob * 100;
 	}
 
 	public int dieRoll() {

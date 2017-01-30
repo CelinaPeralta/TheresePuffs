@@ -279,7 +279,6 @@ public class Battle_Panel extends JPanel {
 					eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
 
 					if (next_villain.getHealth() <= 0) {
-						System.out.println("Enemy died, added 10 puffs");
 						// Change player stats
 						c.setPuffs(c.getPuffs() + 10);
 						c.setAtt_points(c.getAtt_points() + 2);

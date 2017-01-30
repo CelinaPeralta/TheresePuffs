@@ -103,7 +103,7 @@ public class Character {
 
 		int index = all_attacks.indexOf(a);
 
-		return all_attacks_strengths.get(index)[0] * (attack / 100 + 1);
+		return all_attacks_strengths.get(index)[0] * (int)(attack / 100.0 + 1);
 
 	}
 
