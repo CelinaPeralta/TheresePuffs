@@ -25,7 +25,7 @@ public class Character {
 	private int accuracy = 50;
 
 	// Gameplay-oriented attributes
-	private int puffs = 0, level = 1, experience = 0, att_points = 5;
+	private int puffs = 30, level = 1, experience = 0, att_points = 5;
 
 	public Character(String name) {
 

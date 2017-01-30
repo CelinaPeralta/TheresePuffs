@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
+import java.awt.ScrollPane;
 
 public class Battle_Panel extends JPanel {
 
@@ -131,11 +132,13 @@ public class Battle_Panel extends JPanel {
 		display.add(winLabel);
 		
 		textArea = new JTextArea();
+		textArea.setBackground(Color.BLACK);
+		textArea.setForeground(Color.WHITE);
 		textArea.setRows(100);
 		textArea.setLineWrap(true);
 		textArea.setAutoscrolls(true);
 		
-		textArea.setBounds(251, 177, 230, 79);
+		textArea.setBounds(251, 177, 243, 79);
 		display.add(textArea);
 
 		JPanel controls = new JPanel();

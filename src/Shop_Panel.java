@@ -12,12 +12,13 @@ public class Shop_Panel extends JPanel {
 
 	/**
 	 * Create the panel.
-	 * @param c 
+	 * 
+	 * @param c
 	 */
-	
-	JLabel lblDie, lblDie_1, lblDie_2;
+
+	JLabel lblDie, lblDie_1, lblDie_2, lblPuffs, lblPuffsWon;
 	Character c;
-	
+
 	public Shop_Panel(Character c) {
 		this.c = c;
 		setSize(500, 500);
@@ -48,32 +49,41 @@ public class Shop_Panel extends JPanel {
 		lblDie_2.setBounds(66, 290, 128, 16);
 		panel_1.add(lblDie_2);
 
-		JLabel lblPuffs = new JLabel("Puffs:");
+		lblPuffs = new JLabel("Puffs:");
 		lblPuffs.setBounds(66, 191, 117, 16);
 		panel_1.add(lblPuffs);
 
-		JLabel lblPuffsWon = new JLabel("Puffs Won:");
+		lblPuffsWon = new JLabel("Puffs Won:");
 		lblPuffsWon.setBounds(66, 338, 117, 16);
 		panel_1.add(lblPuffsWon);
+		
+		updateLabels(new int[]{0, 0, 0}, 0);
 	}
-	
+
 	private void updateLabels(int[] rolls, int puffs_won) {
-		lblDie.setText(String.valueOf(rolls[0]));
-		lblDie_1.setText(String.valueOf(rolls[1]));
-		lblDie_2.setText(String.valueOf(rolls[2]));
+		lblPuffs.setText("Puffs: " + c.getPuffs());
+		lblDie.setText(String.valueOf("Die 1: " + rolls[0]));
+		lblDie_1.setText(String.valueOf("Die 2: " + rolls[1]));
+		lblDie_2.setText(String.valueOf("Die 3: " + rolls[2]));
+		lblPuffsWon.setText("Puffs Won: " + puffs_won);
 	}
-	
+
 	public class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 			Random rand = new Random();
-			int[] rolls = {rand.nextInt(6)+1,rand.nextInt(6)+1,rand.nextInt(6)+1};
+			c.setPuffs(c.getPuffs() - 10);
+			lblPuffs.setText("Puffs: " + c.getPuffs());
+			int[] rolls = { rand.nextInt(6) + 1, rand.nextInt(6) + 1, rand.nextInt(6) + 1 };
 			int puffs_won = 0;
 			Arrays.sort(rolls);
-			if (rolls[0] == rolls[1] && rolls[0] == rolls[2]) puffs_won = 75;
-			else if (rolls[0] == rolls[1]-1 && rolls[1] == rolls[2]-1) puffs_won = 50;
-			else if (rolls[0] == rolls[1] || rolls[1] == rolls[2] || rolls[2] == rolls[0]) puffs_won = 25;
-			c.setPuffs(c.getPuffs()+puffs_won);
+			if (rolls[0] == rolls[1] && rolls[0] == rolls[2])
+				puffs_won = 75;
+			else if (rolls[0] == rolls[1] - 1 && rolls[1] == rolls[2] - 1)
+				puffs_won = 50;
+			else if (rolls[0] == rolls[1] || rolls[1] == rolls[2] || rolls[2] == rolls[0])
+				puffs_won = 25;
+			c.setPuffs(c.getPuffs() + puffs_won);
 			updateLabels(rolls, puffs_won);
 		}
 	}
