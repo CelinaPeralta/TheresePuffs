@@ -19,20 +19,21 @@ import javax.swing.text.StyledDocument;
 
 public class Battle_Panel extends JPanel {
 
+	Battle_Controller battle_controller = new Battle_Controller();
+
 	private Character c;
 	private JLabel lblDie, lblSum, lblDie2, lblHitProbability, lblSelectedMove, lblMoveCost, lblDamage, eTxtLbl,
-			pTxtLbl, lblCurrentLevel, label;
+			pTxtLbl, lblCurrentLevel, label, label_1;
 	private JPanel player_name, enemy_name;
 	private JButton btnNewButton;
 	private JProgressBar progressBar, progressBar_1;
 	private String[] current_attacks;
 
-	Battle_Controller battle_controller = new Battle_Controller();
-
 	private Character next_villain;
 	private JButton attack1, attack2, attack3, attack4;
 	private JLabel winLabel;
 	private JTextArea textArea;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the panel.
@@ -40,6 +41,7 @@ public class Battle_Panel extends JPanel {
 	public Battle_Panel(Character c) {
 
 		this.c = c;
+		setVillain();
 
 		setBackground(new Color(255, 255, 255));
 
@@ -83,9 +85,9 @@ public class Battle_Panel extends JPanel {
 		progressBar_1.setBackground(new Color(0, 255, 0));
 		progressBar_1.setForeground(Color.GREEN);
 		progressBar_1.setBounds(251, 57, 243, 20);
-		
+
 		progressBar_1.setMinimum(0);
-		
+
 		display.add(progressBar_1);
 
 		JLabel character_img = new JLabel("");
@@ -94,20 +96,20 @@ public class Battle_Panel extends JPanel {
 		character_img.setBounds(81, 73, 78, 108);
 		display.add(character_img);
 
-		
+		label = new JLabel(next_villain.getName());
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(new Color(255, 255, 255));
 		label.setBounds(239, 17, 243, 16);
 		display.add(label);
 
-		JLabel label_1 = new JLabel(c.getName());
+		label_1 = new JLabel(c.getName());
 		label_1.setHorizontalAlignment(SwingConstants.LEFT);
 		label_1.setBounds(18, 177, 243, 16);
-		display.add(label_1);
 		label_1.setForeground(new Color(255, 255, 255));
+		display.add(label_1);
 
 		eTxtLbl = new JLabel();
-		
+
 		eTxtLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		eTxtLbl.setForeground(Color.WHITE);
 		eTxtLbl.setBounds(386, 40, 95, 16);
@@ -146,7 +148,7 @@ public class Battle_Panel extends JPanel {
 		// textArea.setBounds(251, 177, 243, 79);
 		// display.add(textArea);
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(248, 197, 246, 59);
 		scrollPane.add(textArea);
@@ -200,9 +202,24 @@ public class Battle_Panel extends JPanel {
 		btnNewButton.setBounds(295, 16, 171, 23);
 		btnNewButton.addActionListener(new ButtonListener());
 		controls.add(btnNewButton);
+
+		progressBar_1.setMaximum(next_villain.getMax_health());
+		progressBar_1.setValue(next_villain.getHealth());
+		eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
+
 		updateBattlePanel();
-		
-		
+
+	}
+
+	public void setVillain() {
+		if (battle_controller.getCurrentLevel() == battle_controller.LEVELS) {
+			System.out.println("we gettin a bossman");
+			next_villain = battle_controller.getBoss(c);
+		} else {
+			System.out.println("we gettin a regular guy");
+			next_villain = battle_controller.getVillain();
+		}
+
 	}
 
 	// place all things that should be updated here
@@ -219,19 +236,11 @@ public class Battle_Panel extends JPanel {
 		if (!battle_controller.isBattleEnabled()) {
 			battle_controller.setBattleEnabled(true);
 
-			if (battle_controller.getCurrentLevel() == battle_controller.LEVELS) {
-				System.out.println("we gettin a bossman");
-				next_villain = battle_controller.getBoss(c);
-			} else {
-				System.out.println("we gettin a regular guy");
-				next_villain = battle_controller.getVillain();
-			}
-
 			label.setText(next_villain.getName());
+
 			progressBar_1.setMaximum(next_villain.getMax_health());
 			progressBar_1.setValue(next_villain.getHealth());
 			eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
-			
 			progressBar.setValue(c.getHealth());
 			progressBar.setMaximum(c.getMax_health());
 
@@ -291,8 +300,7 @@ public class Battle_Panel extends JPanel {
 						c.checkLevel();
 						c.resetHealth();
 						battle_controller.next_level();
-						next_villain = battle_controller.getVillain();
-
+						setVillain();
 						battle_controller.setBattleEnabled(false);
 						winLabel.setVisible(true);
 						winLabel.setText("VICTORY!");

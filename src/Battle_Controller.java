@@ -37,6 +37,7 @@ public class Battle_Controller {
 	}
 
 	public Character getVillain() {
+		System.out.println("got a villain");
 		int name = rand.nextInt(VILLAIN_NAMES.size());
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
