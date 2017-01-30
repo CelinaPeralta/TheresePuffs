@@ -29,7 +29,7 @@ public class Shop_Panel extends JPanel {
 	Character c;
 	DefaultListModel listModel;
 	JList list;
-	
+
 	public Shop_Panel(final Character c) {
 		this.c = c;
 		setSize(500, 500);
@@ -39,12 +39,12 @@ public class Shop_Panel extends JPanel {
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblAttacks = new JLabel("Attacks");
 		lblAttacks.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAttacks.setBounds(92, 38, 61, 16);
 		panel.add(lblAttacks);
-		
+
 		JButton button_2 = new JButton("Buy"
 				+ "");
 		button_2.addActionListener(new ActionListener() {
@@ -59,7 +59,7 @@ public class Shop_Panel extends JPanel {
 		});
 		button_2.setBounds(63, 342, 117, 29);
 		panel.add(button_2);
-		
+
 		listModel = new DefaultListModel();
 		for(String s : c.getAllAttacks()) {
 			if(!c.getPurchasedAttacks().contains(s))
@@ -68,7 +68,7 @@ public class Shop_Panel extends JPanel {
 		list = new JList(listModel);
 		list.setBounds(63, 91, 117, 179);
 		panel.add(list);
-		
+
 		JLabel lblCost = new JLabel("Cost: ");
 		lblCost.setBounds(63, 304, 117, 16);
 		panel.add(lblCost);
@@ -102,7 +102,7 @@ public class Shop_Panel extends JPanel {
 		lblPuffsWon = new JLabel("Puffs Won:");
 		lblPuffsWon.setBounds(66, 338, 117, 16);
 		panel_1.add(lblPuffsWon);
-		
+
 		updateLabels(new int[]{0, 0, 0}, 0);
 	}
 
@@ -117,20 +117,22 @@ public class Shop_Panel extends JPanel {
 	public class ButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			Random rand = new Random();
-			c.setPuffs(c.getPuffs() - 10);
-			lblPuffs.setText("Puffs: " + c.getPuffs());
-			int[] rolls = { rand.nextInt(6) + 1, rand.nextInt(6) + 1, rand.nextInt(6) + 1 };
-			int puffs_won = 0;
-			Arrays.sort(rolls);
-			if (rolls[0] == rolls[1] && rolls[0] == rolls[2])
-				puffs_won = 75;
-			else if (rolls[0] == rolls[1] - 1 && rolls[1] == rolls[2] - 1)
-				puffs_won = 50;
-			else if (rolls[0] == rolls[1] || rolls[1] == rolls[2] || rolls[2] == rolls[0])
-				puffs_won = 25;
-			c.setPuffs(c.getPuffs() + puffs_won);
-			updateLabels(rolls, puffs_won);
+			if(c.getPuffs() >= 10) {
+				Random rand = new Random();
+				c.setPuffs(c.getPuffs() - 10);
+				lblPuffs.setText("Puffs: " + c.getPuffs());
+				int[] rolls = { rand.nextInt(6) + 1, rand.nextInt(6) + 1, rand.nextInt(6) + 1 };
+				int puffs_won = 0;
+				Arrays.sort(rolls);
+				if (rolls[0] == rolls[1] && rolls[0] == rolls[2])
+					puffs_won = 75;
+				else if (rolls[0] == rolls[1] - 1 && rolls[1] == rolls[2] - 1)
+					puffs_won = 50;
+				else if (rolls[0] == rolls[1] || rolls[1] == rolls[2] || rolls[2] == rolls[0])
+					puffs_won = 25;
+				c.setPuffs(c.getPuffs() + puffs_won);
+				updateLabels(rolls, puffs_won);
+			}
 		}
 	}
 }
