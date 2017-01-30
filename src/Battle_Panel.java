@@ -136,17 +136,16 @@ public class Battle_Panel extends JPanel {
 		textArea = new JTextArea();
 		DefaultCaret caret = (DefaultCaret) textArea.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
-		
-		
+
 		textArea.setBackground(Color.BLACK);
 		textArea.setForeground(Color.WHITE);
 		textArea.setRows(100);
 		textArea.setLineWrap(true);
 		textArea.setAutoscrolls(true);
 
-//		textArea.setBounds(251, 177, 243, 79);
-//		display.add(textArea);
-		
+		// textArea.setBounds(251, 177, 243, 79);
+		// display.add(textArea);
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(248, 197, 246, 59);
@@ -294,7 +293,8 @@ public class Battle_Panel extends JPanel {
 						winLabel.setVisible(true);
 						winLabel.setText("VICTORY!");
 					} else {
-						battle_controller.attack(next_villain, c, next_villain.getRandomAttack());
+						printAttackResult(next_villain.getName(), c.getName(),
+								battle_controller.attack(next_villain, c, next_villain.getRandomAttack()));
 					}
 					if (c.getHealth() <= 0) {
 						c.resetHealth();
