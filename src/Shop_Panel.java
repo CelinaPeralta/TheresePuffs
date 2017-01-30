@@ -61,7 +61,11 @@ public class Shop_Panel extends JPanel {
 						if (!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
 							listModel.addElement(s);// update list
 					}
+<<<<<<< HEAD
 					lblPuffs.setText("Puffs: " + c.getPuffs());
+=======
+					lblPuffs.setText("Puffs: "+c.getPuffs());
+>>>>>>> origin/master
 				}
 			}
 		});
