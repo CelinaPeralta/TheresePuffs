@@ -23,7 +23,7 @@ public class Battle_Controller {
 
 	public Battle_Controller() {
 
-		// VILLAIN_NAMES.add("Cenpai");
+		//VILLAIN_NAMES.add("Cenpai");
 		VILLAIN_NAMES.add("Selena Persalta");
 		VILLAIN_NAMES.add("Sillina Purralta");
 		VILLAIN_NAMES.add("Assorted Cans");

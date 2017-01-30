@@ -62,7 +62,7 @@ public class Shop_Panel extends JPanel {
 
 		listModel = new DefaultListModel();
 		for(String s : c.getAllAttacks()) {
-			if(!c.getPurchasedAttacks().contains(s))
+			if(!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
 				listModel.addElement(s);
 		}
 		list = new JList(listModel);
@@ -112,6 +112,7 @@ public class Shop_Panel extends JPanel {
 		lblDie_1.setText(String.valueOf("Die 2: " + rolls[1]));
 		lblDie_2.setText(String.valueOf("Die 3: " + rolls[2]));
 		lblPuffsWon.setText("Puffs Won: " + puffs_won);
+		lblPuffs.setText("Puffs: "+c.getPuffs());
 	}
 
 	public class ButtonListener implements ActionListener {
