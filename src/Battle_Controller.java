@@ -10,7 +10,7 @@ public class Battle_Controller {
 
 	// Possibly make character list
 	private ArrayList<String> VILLAIN_NAMES = new ArrayList<String>();
-	public final int LEVELS = 8;
+	public final int LEVELS;
 
 	private int current_level = 1;
 	private Random rand = new Random();
@@ -32,24 +32,31 @@ public class Battle_Controller {
 		VILLAIN_NAMES.add("Celili");
 		VILLAIN_NAMES.add("Celulu");
 		VILLAIN_NAMES.add("MattyBRaps");
+		
+		LEVELS = VILLAIN_NAMES.size() + 1;
 
 
 	}
 
-	public Character getVillain() {
+	public Character getVillain(Character c) {
 		System.out.println("got a villain");
 		int name = rand.nextInt(VILLAIN_NAMES.size());
 		Character v = new Character(VILLAIN_NAMES.get(name));
 		VILLAIN_NAMES.remove(name);
+		
+		
+		v.setAccuracy(c.getAccuracy() + (int) (Math.random() * (10 * current_level * c.getLevel())));
+		v.setAgility(c.getAgility() + (int) (Math.random() * (10 * current_level * c.getLevel())));
+		v.setMax_health(c.getMax_health() + (int) (Math.random() * (10 * current_level * c.getLevel())));
 		v.resetHealth();
 		return v;
 	}
 
 	public Character getBoss(Character c) {
 		Character b = new Character("Cenpai");
-		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * 10));
-		b.setAgility(c.getAgility() + (int) (Math.random() * 10));
-		b.setMax_health(c.getMax_health() + (int) (Math.random() * 50));
+		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * 100));
+		b.setAgility(c.getAgility() + (int) (Math.random() * 100));
+		b.setMax_health(c.getMax_health() + (int) (Math.random() * 100));
 		b.resetHealth();
 
 		return b;

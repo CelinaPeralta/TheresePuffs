@@ -217,7 +217,7 @@ public class Battle_Panel extends JPanel {
 			next_villain = battle_controller.getBoss(c);
 		} else {
 			System.out.println("we gettin a regular guy");
-			next_villain = battle_controller.getVillain();
+			next_villain = battle_controller.getVillain(c);
 		}
 
 	}

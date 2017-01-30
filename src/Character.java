@@ -98,11 +98,14 @@ public class Character {
 	public void purchaseAttack(String name) {
 		purchased_attacks.add(name);
 	}
+	
+	
 
 	public static int getAttackStrength(String a) {
 
 		int index = all_attacks.indexOf(a);
 
+		//change
 		return all_attacks_strengths.get(index)[0] * (int)(attack / 100.0 + 1);
 
 	}
