@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,18 +9,19 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.DropMode;
-import java.awt.ScrollPane;
+import javax.swing.SwingConstants;
+import javax.swing.text.DefaultCaret;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 public class Battle_Panel extends JPanel {
 
 	private Character c;
 	private JLabel lblDie, lblSum, lblDie2, lblHitProbability, lblSelectedMove, lblMoveCost, lblDamage, eTxtLbl,
-			pTxtLbl, lblCurrentLevel;
+			pTxtLbl, lblCurrentLevel, label;
 	private JPanel player_name, enemy_name;
 	private JButton btnNewButton;
 	private JProgressBar progressBar, progressBar_1;
@@ -92,7 +94,7 @@ public class Battle_Panel extends JPanel {
 		character_img.setBounds(81, 73, 78, 108);
 		display.add(character_img);
 
-		JLabel label = new JLabel(next_villain.getName());
+		label = new JLabel(next_villain.getName());
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(new Color(255, 255, 255));
 		label.setBounds(239, 17, 243, 16);
@@ -130,16 +132,29 @@ public class Battle_Panel extends JPanel {
 		winLabel.setBounds(200, 128, 95, 32);
 		winLabel.setVisible(false);
 		display.add(winLabel);
-		
+
 		textArea = new JTextArea();
+		DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.OUT_BOTTOM);
+		
+		
 		textArea.setBackground(Color.BLACK);
 		textArea.setForeground(Color.WHITE);
 		textArea.setRows(100);
 		textArea.setLineWrap(true);
 		textArea.setAutoscrolls(true);
+
+//		textArea.setBounds(251, 177, 243, 79);
+//		display.add(textArea);
 		
-		textArea.setBounds(251, 177, 243, 79);
-		display.add(textArea);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(248, 197, 246, 59);
+		scrollPane.add(textArea);
+		scrollPane.setViewportView(textArea);
+		scrollPane.setBorder(null);
+		scrollPane.setFocusable(false);
+		display.add(scrollPane);
 
 		JPanel controls = new JPanel();
 		controls.setBackground(new Color(245, 245, 245));
@@ -191,16 +206,28 @@ public class Battle_Panel extends JPanel {
 
 	// place all things that should be updated here
 	public void updateBattlePanel() {
+		textArea.setText("");
 		current_attacks = c.getAttack_list();
 		attack1.setText(current_attacks[0]);
 		attack2.setText(current_attacks[1]);
 		attack3.setText(current_attacks[2]);
 		attack4.setText(current_attacks[3]);
 		pTxtLbl.setText(c.getHealth() + "/" + c.getMax_health());
+
 		lblCurrentLevel.setText("Level " + battle_controller.getCurrentLevel());
 		if (!battle_controller.isBattleEnabled()) {
 			battle_controller.setBattleEnabled(true);
-			next_villain = battle_controller.getVillain();
+
+			if (battle_controller.getCurrentLevel() == battle_controller.LEVELS) {
+				System.out.println("we gettin a bossman");
+				next_villain = battle_controller.getBoss(c);
+			} else {
+				System.out.println("we gettin a regular guy");
+				next_villain = battle_controller.getVillain();
+			}
+
+			label.setText(next_villain.getName());
+
 			eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
 			progressBar.setValue(c.getHealth());
 			progressBar_1.setValue(next_villain.getHealth());
@@ -234,7 +261,7 @@ public class Battle_Panel extends JPanel {
 				if (button.getText().equals("Attack!")) {
 
 					// Attack
-				printAttackResult(c.getName(), next_villain.getName(),	battle_controller.attack(c, next_villain,
+					printAttackResult(c.getName(), next_villain.getName(), battle_controller.attack(c, next_villain,
 							lblSelectedMove.getText().substring("Selected Move: ".length())));
 
 					// Set dice labels
@@ -282,6 +309,8 @@ public class Battle_Panel extends JPanel {
 					lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText()));
 				}
 
+			} else {
+				System.out.println("battle not enabled");
 			}
 		}
 	}
