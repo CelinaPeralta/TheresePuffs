@@ -44,7 +44,7 @@ public class Shop_Panel extends JPanel {
 
 		JLabel lblAttacks = new JLabel("Attacks");
 		lblAttacks.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAttacks.setBounds(91, 110, 61, 16);
+		lblAttacks.setBounds(0, 110, 250, 16);
 		panel.add(lblAttacks);
 
 		JButton button_2 = new JButton("Buy" + "");
@@ -61,15 +61,13 @@ public class Shop_Panel extends JPanel {
 						if (!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
 							listModel.addElement(s);// update list
 					}
-<<<<<<< HEAD
+
 					lblPuffs.setText("Puffs: " + c.getPuffs());
-=======
-					lblPuffs.setText("Puffs: "+c.getPuffs());
->>>>>>> origin/master
+
 				}
 			}
 		});
-		button_2.setBounds(63, 393, 117, 29);
+		button_2.setBounds(66, 393, 117, 29);
 		panel.add(button_2);
 
 		listModel = new DefaultListModel();
@@ -79,12 +77,13 @@ public class Shop_Panel extends JPanel {
 //		panel.add(list);
 
 		JLabel lblCost = new JLabel("Cost: 100");
-		lblCost.setBounds(63, 365, 117, 16);
+		lblCost.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCost.setBounds(0, 365, 250, 16);
 		panel.add(lblCost);
 
 		lblPuffs = new JLabel("Puffs:");
 		lblPuffs.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuffs.setBounds(63, 60, 117, 16);
+		lblPuffs.setBounds(0, 70, 250, 16);
 		panel.add(lblPuffs);
 		lblPuffs.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 
@@ -92,6 +91,12 @@ public class Shop_Panel extends JPanel {
 		scrollPane.setViewportView(list);
 		scrollPane.setBounds(18, 148, 214, 179);
 		panel.add(scrollPane);
+		
+		JLabel lblNewLabel_1 = new JLabel("PUFF MART");
+		lblNewLabel_1.setFont(new Font("Euphemia UCAS", Font.PLAIN, 20));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 250, 50);
+		panel.add(lblNewLabel_1);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -104,25 +109,29 @@ public class Shop_Panel extends JPanel {
 		panel_1.add(btnGamble);
 
 		lblDie = new JLabel("Die 1:");
-		lblDie.setBounds(66, 147, 128, 16);
+		lblDie.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDie.setBounds(6, 137, 238, 16);
 		panel_1.add(lblDie);
 
 		lblDie_1 = new JLabel("Die 2:");
-		lblDie_1.setBounds(66, 202, 128, 16);
+		lblDie_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDie_1.setBounds(6, 190, 238, 16);
 		panel_1.add(lblDie_1);
 
 		lblDie_2 = new JLabel("Die 3:");
-		lblDie_2.setBounds(66, 260, 128, 16);
+		lblDie_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDie_2.setBounds(6, 242, 238, 16);
 		panel_1.add(lblDie_2);
 
 		lblPuffsWon = new JLabel("Puffs Won:");
-		lblPuffsWon.setBounds(66, 338, 117, 16);
+		lblPuffsWon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPuffsWon.setBounds(6, 338, 238, 16);
 		panel_1.add(lblPuffsWon);
 		
 		JLabel lblNewLabel = new JLabel("Puff-o-matic");
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(66, 60, 117, 16);
+		lblNewLabel.setBounds(66, 70, 117, 16);
 		panel_1.add(lblNewLabel);
 
 		updateLabels(new int[] { 0, 0, 0 }, 0);

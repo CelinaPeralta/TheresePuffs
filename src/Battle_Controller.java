@@ -39,7 +39,7 @@ public class Battle_Controller {
 	public Character getVillain() {
 		int name = rand.nextInt(VILLAIN_NAMES.size());
 		Character v = new Character(VILLAIN_NAMES.get(name));
-//		VILLAIN_NAMES.remove(name);
+		VILLAIN_NAMES.remove(name);
 		v.resetHealth();
 		return v;
 	}

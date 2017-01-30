@@ -29,7 +29,7 @@ public class Battle_Panel extends JPanel {
 
 	Battle_Controller battle_controller = new Battle_Controller();
 
-	private Character next_villain = battle_controller.getVillain();
+	private Character next_villain;
 	private JButton attack1, attack2, attack3, attack4;
 	private JLabel winLabel;
 	private JTextArea textArea;
@@ -83,9 +83,9 @@ public class Battle_Panel extends JPanel {
 		progressBar_1.setBackground(new Color(0, 255, 0));
 		progressBar_1.setForeground(Color.GREEN);
 		progressBar_1.setBounds(251, 57, 243, 20);
-		progressBar_1.setMaximum(next_villain.getMax_health());
+		
 		progressBar_1.setMinimum(0);
-		progressBar_1.setValue(next_villain.getMax_health());
+		
 		display.add(progressBar_1);
 
 		JLabel character_img = new JLabel("");
@@ -94,7 +94,7 @@ public class Battle_Panel extends JPanel {
 		character_img.setBounds(81, 73, 78, 108);
 		display.add(character_img);
 
-		label = new JLabel(next_villain.getName());
+		
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(new Color(255, 255, 255));
 		label.setBounds(239, 17, 243, 16);
@@ -107,7 +107,7 @@ public class Battle_Panel extends JPanel {
 		label_1.setForeground(new Color(255, 255, 255));
 
 		eTxtLbl = new JLabel();
-		eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
+		
 		eTxtLbl.setHorizontalAlignment(SwingConstants.RIGHT);
 		eTxtLbl.setForeground(Color.WHITE);
 		eTxtLbl.setBounds(386, 40, 95, 16);
@@ -201,6 +201,8 @@ public class Battle_Panel extends JPanel {
 		btnNewButton.addActionListener(new ButtonListener());
 		controls.add(btnNewButton);
 		updateBattlePanel();
+		
+		
 	}
 
 	// place all things that should be updated here
@@ -226,10 +228,13 @@ public class Battle_Panel extends JPanel {
 			}
 
 			label.setText(next_villain.getName());
-
-			eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
-			progressBar.setValue(c.getHealth());
+			progressBar_1.setMaximum(next_villain.getMax_health());
 			progressBar_1.setValue(next_villain.getHealth());
+			eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
+			
+			progressBar.setValue(c.getHealth());
+			progressBar.setMaximum(c.getMax_health());
+
 			winLabel.setVisible(false);
 		}
 
