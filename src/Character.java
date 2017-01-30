@@ -63,6 +63,11 @@ public class Character {
 		attack_list[3] = all_attacks.get(3);
 
 	}
+	
+	public void addNewAttack(String attack_name, int[] vals){
+		all_attacks.add(attack_name);
+		all_attacks_strengths.add(vals);
+	}
 
 	public void clearAttack_list(){
 		for(int i = 0; i < attack_list.length; i++){

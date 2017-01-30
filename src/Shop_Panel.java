@@ -7,6 +7,11 @@ import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.JRadioButton;
+import javax.swing.JList;
 
 public class Shop_Panel extends JPanel {
 
@@ -25,10 +30,34 @@ public class Shop_Panel extends JPanel {
 		setLayout(new GridLayout(1, 0, 0, 0));
 
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblAttacks = new JLabel("Attacks");
+		lblAttacks.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAttacks.setBounds(92, 38, 61, 16);
+		panel.add(lblAttacks);
+		
+		JButton button_2 = new JButton("Buy"
+				+ "");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_2.setBounds(63, 342, 117, 29);
+		panel.add(button_2);
+		
+		JList list = new JList();
+		list.setBounds(63, 91, 117, 179);
+		panel.add(list);
+		
+		JLabel lblCost = new JLabel("Cost: ");
+		lblCost.setBounds(63, 304, 117, 16);
+		panel.add(lblCost);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		add(panel_1);
 		panel_1.setLayout(null);
 
@@ -46,11 +75,11 @@ public class Shop_Panel extends JPanel {
 		panel_1.add(lblDie_1);
 
 		lblDie_2 = new JLabel("Die 3:");
-		lblDie_2.setBounds(66, 290, 128, 16);
+		lblDie_2.setBounds(66, 284, 128, 16);
 		panel_1.add(lblDie_2);
 
 		lblPuffs = new JLabel("Puffs:");
-		lblPuffs.setBounds(66, 191, 117, 16);
+		lblPuffs.setBounds(66, 131, 117, 16);
 		panel_1.add(lblPuffs);
 
 		lblPuffsWon = new JLabel("Puffs Won:");
