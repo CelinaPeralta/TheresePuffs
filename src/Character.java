@@ -68,8 +68,6 @@ public class Character {
 		purchased_attacks.add(all_attacks.get(1));
 		purchased_attacks.add(all_attacks.get(2));
 		purchased_attacks.add(all_attacks.get(3));
-		System.out.println(attack_list[0]);
-		System.out.println(purchased_attacks.get(0));
 
 	}
 	
