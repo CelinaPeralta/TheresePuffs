@@ -1,10 +1,14 @@
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.ListModel;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Random;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
@@ -23,8 +27,10 @@ public class Shop_Panel extends JPanel {
 
 	JLabel lblDie, lblDie_1, lblDie_2, lblPuffs, lblPuffsWon;
 	Character c;
-
-	public Shop_Panel(Character c) {
+	DefaultListModel listModel;
+	JList list;
+	
+	public Shop_Panel(final Character c) {
 		this.c = c;
 		setSize(500, 500);
 		setLayout(new GridLayout(1, 0, 0, 0));
@@ -43,12 +49,23 @@ public class Shop_Panel extends JPanel {
 				+ "");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int index = list.getSelectedIndex();
+				if(c.getPuffs() >= 100) {
+					c.setPuffs(c.getPuffs()-100);
+					c.purchaseAttack(listModel.getElementAt(index).toString());
+					listModel.remove(index);
+				}
 			}
 		});
 		button_2.setBounds(63, 342, 117, 29);
 		panel.add(button_2);
 		
-		JList list = new JList();
+		listModel = new DefaultListModel();
+		for(String s : c.getAllAttacks()) {
+			if(!c.getPurchasedAttacks().contains(s))
+				listModel.addElement(s);
+		}
+		list = new JList(listModel);
 		list.setBounds(63, 91, 117, 179);
 		panel.add(list);
 		

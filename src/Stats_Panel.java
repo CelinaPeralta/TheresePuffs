@@ -83,28 +83,28 @@ public class Stats_Panel extends JPanel {
 
 		move1 = new JComboBox<String>();
 		move1.setBounds(321, 205, 156, 27);
-		for (String s : c.getAllAttacks())
+		for (String s : c.getPurchasedAttacks())
 			move1.addItem(s);
 		move1.setSelectedItem(c.getAttack_list()[0]);
 		add(move1);
 
 		move2 = new JComboBox<String>();
 		move2.setBounds(321, 270, 156, 27);
-		for (String s : c.getAllAttacks())
+		for (String s : c.getPurchasedAttacks())
 			move2.addItem(s);
 		move2.setSelectedItem(c.getAttack_list()[1]);
 		add(move2);
 
 		move3 = new JComboBox<String>();
 		move3.setBounds(321, 322, 156, 27);
-		for (String s : c.getAllAttacks())
+		for (String s : c.getPurchasedAttacks())
 			move3.addItem(s);
 		move3.setSelectedItem(c.getAttack_list()[2]);
 		add(move3);
 
 		 move4 = new JComboBox<String>();
 		move4.setBounds(321, 381, 156, 27);
-		for (String s : c.getAllAttacks())
+		for (String s : c.getPurchasedAttacks())
 			move4.addItem(s);
 		move4.setSelectedItem(c.getAttack_list()[3]);
 		add(move4);

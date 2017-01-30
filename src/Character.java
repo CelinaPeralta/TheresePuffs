@@ -10,6 +10,8 @@ public class Character {
 	// Use all_attacks to find index of attack in all_attacks_strengths
 	private static ArrayList<String> all_attacks = new ArrayList<String>();
 	private static ArrayList<int[]> all_attacks_strengths = new ArrayList<int[]>();
+	
+	private static ArrayList<String> purchased_attacks = new ArrayList<String>();
 
 	// Attack array stores 4 attacks per character. Attack has damage/strength
 	// and accuracy.
@@ -61,6 +63,11 @@ public class Character {
 		attack_list[1] = all_attacks.get(1);
 		attack_list[2] = all_attacks.get(2);
 		attack_list[3] = all_attacks.get(3);
+		
+		purchased_attacks.add(all_attacks.get(0));
+		purchased_attacks.add(all_attacks.get(1));
+		purchased_attacks.add(all_attacks.get(2));
+		purchased_attacks.add(all_attacks.get(3));
 
 	}
 	
@@ -83,7 +90,15 @@ public class Character {
 	public ArrayList<String> getAllAttacks() {
 		return all_attacks;
 	}
-
+	
+	public ArrayList<String> getPurchasedAttacks() {
+		return purchased_attacks;
+	}
+	
+	public void purchaseAttack(String name) {
+		purchased_attacks.add(name);
+	}
+	
 	public static int getAttackStrength(String a) {
 
 		int index = all_attacks.indexOf(a);
