@@ -54,6 +54,11 @@ public class Shop_Panel extends JPanel {
 					c.setPuffs(c.getPuffs()-100);
 					c.purchaseAttack(listModel.getElementAt(index).toString());
 					listModel.remove(index);
+					listModel.clear();
+					for(String s : c.getAllAttacks()) {
+						if(!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
+							listModel.addElement(s);//update list
+					}
 				}
 			}
 		});
@@ -61,15 +66,12 @@ public class Shop_Panel extends JPanel {
 		panel.add(button_2);
 
 		listModel = new DefaultListModel();
-		for(String s : c.getAllAttacks()) {
-			if(!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
-				listModel.addElement(s);
-		}
+		
 		list = new JList(listModel);
 		list.setBounds(63, 91, 117, 179);
 		panel.add(list);
 
-		JLabel lblCost = new JLabel("Cost: ");
+		JLabel lblCost = new JLabel("Cost: 100");
 		lblCost.setBounds(63, 304, 117, 16);
 		panel.add(lblCost);
 
@@ -113,6 +115,11 @@ public class Shop_Panel extends JPanel {
 		lblDie_2.setText(String.valueOf("Die 3: " + rolls[2]));
 		lblPuffsWon.setText("Puffs Won: " + puffs_won);
 		lblPuffs.setText("Puffs: "+c.getPuffs());
+		listModel.clear();
+		for(String s : c.getAllAttacks()) {
+			if(!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
+				listModel.addElement(s);
+		}
 	}
 
 	public class ButtonListener implements ActionListener {
