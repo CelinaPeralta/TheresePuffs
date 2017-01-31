@@ -34,6 +34,7 @@ public class Battle_Panel extends JPanel {
 	private JLabel winLabel;
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
+	private JLabel enemy_img;
 
 	/**
 	 * Create the panel.
@@ -95,7 +96,13 @@ public class Battle_Panel extends JPanel {
 		character_img.setIcon(image);
 		character_img.setBounds(81, 73, 78, 108);
 		display.add(character_img);
-
+		
+		enemy_img = new JLabel("");
+		ImageIcon ene_image = new ImageIcon("images/Celina.png");
+		enemy_img.setIcon(ene_image);
+		enemy_img.setBounds(339, 73, 78, 108);
+		display.add(enemy_img);
+		
 		label = new JLabel(next_villain.getName());
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(new Color(255, 255, 255));
@@ -215,6 +222,7 @@ public class Battle_Panel extends JPanel {
 		if (battle_controller.getCurrentLevel() == battle_controller.LEVELS) {
 			System.out.println("we gettin a bossman");
 			next_villain = battle_controller.getBoss(c);
+			enemy_img.setIcon(new ImageIcon("images/Puffs.png"));
 		} else {
 			System.out.println("we gettin a regular guy");
 			next_villain = battle_controller.getVillain(c);
