@@ -100,13 +100,16 @@ public class Character {
 	}
 	
 	
-
 	public static int getAttackStrength(String a) {
+		return all_attacks_strengths.get(all_attacks.indexOf(a))[0];
+	}
+	
+	public static int getAttackStrengthWithMultiplier(String a) {
 
 		int index = all_attacks.indexOf(a);
 
 		//change
-		return all_attacks_strengths.get(index)[0] * (int)(attack / 100.0 + 1);
+		return (int)(all_attacks_strengths.get(index)[0] * (attack / 100.0 + 1));
 
 	}
 

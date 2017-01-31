@@ -76,7 +76,7 @@ public class Battle_Controller {
 			int hit_attempt = rand.nextInt(max_random_num);
 
 			if (hit_attempt <= attacker.getAccuracy()) {
-				attackee.takeDamage(Character.getAttackStrength(attack_name));
+				attackee.takeDamage(Character.getAttackStrengthWithMultiplier(attack_name));
 				return 1;
 			} else {
 //				System.out.println(attacker.getName() + " missed " + attackee.getName());
