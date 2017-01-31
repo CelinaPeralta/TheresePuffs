@@ -96,13 +96,13 @@ public class Battle_Panel extends JPanel {
 		character_img.setIcon(image);
 		character_img.setBounds(81, 73, 78, 108);
 		display.add(character_img);
-		
+
 		enemy_img = new JLabel("");
 		ImageIcon ene_image = new ImageIcon("images/Celina.png");
 		enemy_img.setIcon(ene_image);
 		enemy_img.setBounds(339, 73, 78, 108);
 		display.add(enemy_img);
-		
+
 		label = new JLabel(next_villain.getName());
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setForeground(new Color(255, 255, 255));
@@ -232,28 +232,32 @@ public class Battle_Panel extends JPanel {
 
 	// place all things that should be updated here
 	public void updateBattlePanel() {
+
+		if (!battle_controller.isBattleEnabled())
+			battle_controller.setBattleEnabled(true);
+
+		lblCurrentLevel.setText("Level " + battle_controller.getCurrentLevel());
+
 		textArea.setText("");
 		current_attacks = c.getAttack_list();
 		attack1.setText(current_attacks[0]);
 		attack2.setText(current_attacks[1]);
 		attack3.setText(current_attacks[2]);
 		attack4.setText(current_attacks[3]);
+
+		c.resetHealth();
+		next_villain.resetHealth();
 		pTxtLbl.setText(c.getHealth() + "/" + c.getMax_health());
+		eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
 
-		lblCurrentLevel.setText("Level " + battle_controller.getCurrentLevel());
-		if (!battle_controller.isBattleEnabled()) {
-			battle_controller.setBattleEnabled(true);
+		label.setText(next_villain.getName());
 
-			label.setText(next_villain.getName());
-
-			progressBar_1.setMaximum(next_villain.getMax_health());
-			progressBar_1.setValue(next_villain.getHealth());
-			eTxtLbl.setText(next_villain.getHealth() + "/" + next_villain.getMax_health());
-			progressBar.setValue(c.getHealth());
-			progressBar.setMaximum(c.getMax_health());
-
-			winLabel.setVisible(false);
-		}
+		progressBar_1.setMaximum(next_villain.getMax_health());
+		progressBar_1.setValue(next_villain.getHealth());
+		progressBar.setValue(c.getHealth());
+		progressBar.setMaximum(c.getMax_health());
+		
+		winLabel.setVisible(false);
 
 	}
 
@@ -326,7 +330,8 @@ public class Battle_Panel extends JPanel {
 				} else {
 					lblSelectedMove.setText("Selected Move: " + button.getText());
 					lblMoveCost.setText("Move Cost: " + Character.getAttackValue(button.getText()));
-					lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText())+" + "+(int)(c.getAttackStrength(button.getText())*(c.getAttack()/100.0)));
+					lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText()) + " + "
+							+ (int) (c.getAttackStrength(button.getText()) * (c.getAttack() / 100.0)));
 				}
 
 			} else {

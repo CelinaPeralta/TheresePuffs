@@ -23,7 +23,7 @@ public class Battle_Controller {
 
 	public Battle_Controller() {
 
-		//VILLAIN_NAMES.add("Cenpai");
+		// VILLAIN_NAMES.add("Cenpai");
 		VILLAIN_NAMES.add("Selena Persalta");
 		VILLAIN_NAMES.add("Sillina Purralta");
 		VILLAIN_NAMES.add("Assorted Cans");
@@ -32,9 +32,8 @@ public class Battle_Controller {
 		VILLAIN_NAMES.add("Celili");
 		VILLAIN_NAMES.add("Celulu");
 		VILLAIN_NAMES.add("MattyBRaps");
-		
-		LEVELS = VILLAIN_NAMES.size() + 1;
 
+		LEVELS = VILLAIN_NAMES.size() + 1;
 
 	}
 
@@ -42,22 +41,26 @@ public class Battle_Controller {
 
 		int name = rand.nextInt(VILLAIN_NAMES.size());
 		Character v = new Character(VILLAIN_NAMES.get(name));
-		
-		
+
 		v.setAccuracy(c.getAccuracy() + (int) (Math.random() * (10 * current_level * c.getLevel())));
 		v.setAgility(c.getAgility() + (int) (Math.random() * (10 * current_level * c.getLevel())));
 		v.setMax_health(c.getMax_health() + (int) (Math.random() * (10 * current_level * c.getLevel())));
+
+		if (current_level > 3) {
+			v.addAttack("Explosive Demon Wave", 3);
+		}
+
 		v.resetHealth();
-		
+
 		VILLAIN_NAMES.remove(name);
 		return v;
 	}
 
 	public Character getBoss(Character c) {
 		Character b = new Character("Cenpai");
-		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * 100));
-		b.setAgility(c.getAgility() + (int) (Math.random() * 100));
-		b.setMax_health(c.getMax_health() + (int) (Math.random() * 100));
+		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * (20 * current_level * c.getLevel())));
+		b.setAgility(c.getAgility() + (int) (Math.random() * (20 * current_level * c.getLevel())));
+		b.setMax_health(c.getMax_health() + (int) (Math.random() * (20 * current_level * c.getLevel())));
 		b.resetHealth();
 
 		return b;
@@ -80,12 +83,13 @@ public class Battle_Controller {
 				attackee.takeDamage(Character.getAttackStrengthWithMultiplier(attack_name));
 				return 1;
 			} else {
-//				System.out.println(attacker.getName() + " missed " + attackee.getName());
+				// System.out.println(attacker.getName() + " missed " +
+				// attackee.getName());
 				return 0;
 			}
 
 		} else {
-//			System.out.println("Sum not high enough.");
+			// System.out.println("Sum not high enough.");
 			return -1;
 		}
 	}
