@@ -218,7 +218,7 @@ public class Shop_Panel extends JPanel {
 		
 		lblPuffsWon.setText("Puffs Won: " + puffs_won);
 		lblPuffs.setText("Puffs: " + c.getPuffs());
-		label.setText("Puff: " + c.getPuffs());
+		label.setText("Puffs: " + c.getPuffs());
 		listModel.clear();
 		for (String s : c.getAllAttacks()) {
 			if (!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
