@@ -318,7 +318,7 @@ public class Battle_Panel extends JPanel {
 				} else {
 					lblSelectedMove.setText("Selected Move: " + button.getText());
 					lblMoveCost.setText("Move Cost: " + Character.getAttackValue(button.getText()));
-					lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText())+" +"+(int)(c.getAttackStrength(button.getText())*(c.getAttack()/100.0)));
+					lblDamage.setText("Damage: " + Character.getAttackStrength(button.getText())+" + "+(int)(c.getAttackStrength(button.getText())*(c.getAttack()/100.0)));
 				}
 
 			} else {

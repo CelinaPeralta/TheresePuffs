@@ -1,7 +1,5 @@
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.ListModel;
-
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,16 +7,15 @@ import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
 import javax.swing.JList;
-import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class Shop_Panel extends JPanel {
 
@@ -32,6 +29,11 @@ public class Shop_Panel extends JPanel {
 	Character c;
 	DefaultListModel listModel;
 	JList list;
+	ImageIcon d1, d2, d3;
+	String[] dice = new String[]{"","die1.png","die2.png","die3.png","die4.png","die5.png","die6.png"};
+	private JLabel die1icon;
+	private JLabel die2icon;
+	private JLabel die3icon;
 
 	public Shop_Panel(final Character c) {
 		this.c = c;
@@ -124,22 +126,22 @@ public class Shop_Panel extends JPanel {
 
 		lblDie = new JLabel("Die 1:");
 		lblDie.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDie.setBounds(6, 220, 162, 16);
+		lblDie.setBounds(67, 163, 70, 16);
 		panel_1.add(lblDie);
 
 		lblDie_1 = new JLabel("Die 2:");
 		lblDie_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDie_1.setBounds(160, 220, 162, 16);
+		lblDie_1.setBounds(204, 163, 70, 16);
 		panel_1.add(lblDie_1);
 
 		lblDie_2 = new JLabel("Die 3:");
 		lblDie_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDie_2.setBounds(317, 220, 162, 16);
+		lblDie_2.setBounds(341, 163, 70, 16);
 		panel_1.add(lblDie_2);
 
 		lblPuffsWon = new JLabel("Puffs Won:");
 		lblPuffsWon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuffsWon.setBounds(120, 293, 238, 16);
+		lblPuffsWon.setBounds(120, 336, 238, 16);
 		panel_1.add(lblPuffsWon);
 
 		JLabel lblNewLabel = new JLabel("PUFF-O-MATIC");
@@ -153,8 +155,21 @@ public class Shop_Panel extends JPanel {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.BLACK);
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		label.setBounds(114, 147, 250, 16);
+		label.setBounds(114, 308, 250, 16);
 		panel_1.add(label);
+		
+		die1icon = new JLabel();
+		die1icon.setBounds(67, 192, 70, 70);
+		panel_1.add(die1icon);
+		
+		die2icon = new JLabel();
+		die2icon.setBounds(204, 192, 70, 70);
+		panel_1.add(die2icon);
+		
+		die3icon = new JLabel();
+		die3icon.setBounds(341, 192, 70, 70);
+		panel_1.add(die3icon);
+		
 
 		updateLabels(new int[] { 0, 0, 0 }, 0);
 	}
@@ -169,14 +184,29 @@ public class Shop_Panel extends JPanel {
 		lblDie.setText(String.valueOf("Die 1: " + rolls[0]));
 		lblDie_1.setText(String.valueOf("Die 2: " + rolls[1]));
 		lblDie_2.setText(String.valueOf("Die 3: " + rolls[2]));
+		
+		
+		
+		d1 = new ImageIcon("images/"+dice[rolls[0]]);
+		d2 = new ImageIcon("images/"+dice[rolls[1]]);
+		d3 = new ImageIcon("images/"+dice[rolls[2]]);
+		
+		
+		die1icon.setIcon(d1);
+		die2icon.setIcon(d2);
+		die3icon.setIcon(d3);
+		
+		
+		
 		lblPuffsWon.setText("Puffs Won: " + puffs_won);
 		lblPuffs.setText("Puffs: " + c.getPuffs());
-		label.setText("Puffs: " + c.getPuffs());
+		label.setText("Puff: " + c.getPuffs());
 		listModel.clear();
 		for (String s : c.getAllAttacks()) {
 			if (!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
 				listModel.addElement(s);
 		}
+		
 	}
 
 	public class ButtonListener implements ActionListener {
