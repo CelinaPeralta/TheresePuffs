@@ -58,9 +58,9 @@ public class Battle_Controller {
 
 	public Character getBoss(Character c) {
 		Character b = new Character("Cenpai");
-		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * (20 * current_level * c.getLevel())));
-		b.setAgility(c.getAgility() + (int) (Math.random() * (20 * current_level * c.getLevel())));
-		b.setMax_health(c.getMax_health() + (int) (Math.random() * (20 * current_level * c.getLevel())));
+		b.setAccuracy(c.getAccuracy() + (int) (Math.random() * (11 * current_level * c.getLevel())));
+		b.setAgility(c.getAgility() + (int) (Math.random() * (11 * current_level * c.getLevel())));
+		b.setMax_health(c.getMax_health() + (int) (Math.random() * (7 * current_level * c.getLevel())));
 		b.resetHealth();
 
 		return b;

@@ -24,9 +24,10 @@ public class Master_Frame extends JFrame {
 	Battle_Panel battle_panel = new Battle_Panel(c);
 	Stats_Panel stats_panel = new Stats_Panel(c);
 	Shop_Panel shop_panel = new Shop_Panel(c);
+	Win_Panel win_panel = new Win_Panel();
 
-	CardLayout layout = new CardLayout();
-	JPanel cardPanel = new JPanel(layout);
+	static CardLayout layout = new CardLayout();
+	static JPanel cardPanel = new JPanel(layout);
 
 	public Master_Frame() {
 
@@ -50,6 +51,7 @@ public class Master_Frame extends JFrame {
 		cardPanel.add(battle_panel, "BATTLE");
 		cardPanel.add(stats_panel, "STATS");
 		cardPanel.add(shop_panel, "SHOP");
+		cardPanel.add(win_panel, "WIN");
 
 		JFrame frame = new JFrame();
 		frame.setSize(500, 550);
@@ -104,7 +106,10 @@ public class Master_Frame extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				Master_Frame testCardLayout = new Master_Frame();
+				Master_Frame frame = new Master_Frame();
+				if(frame.battle_panel.battle_controller.getCurrentLevel() > 9){
+					frame.layout.show(cardPanel, "WIN");
+				}
 			}
 		});
 
