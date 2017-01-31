@@ -39,16 +39,17 @@ public class Battle_Controller {
 	}
 
 	public Character getVillain(Character c) {
-		System.out.println("got a villain");
+
 		int name = rand.nextInt(VILLAIN_NAMES.size());
 		Character v = new Character(VILLAIN_NAMES.get(name));
-		VILLAIN_NAMES.remove(name);
 		
 		
 		v.setAccuracy(c.getAccuracy() + (int) (Math.random() * (10 * current_level * c.getLevel())));
 		v.setAgility(c.getAgility() + (int) (Math.random() * (10 * current_level * c.getLevel())));
 		v.setMax_health(c.getMax_health() + (int) (Math.random() * (10 * current_level * c.getLevel())));
 		v.resetHealth();
+		
+		VILLAIN_NAMES.remove(name);
 		return v;
 	}
 

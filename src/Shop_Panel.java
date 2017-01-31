@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JList;
 import java.awt.Font;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 
 public class Shop_Panel extends JPanel {
 
@@ -27,7 +28,7 @@ public class Shop_Panel extends JPanel {
 	 * @param c
 	 */
 
-	JLabel lblDie, lblDie_1, lblDie_2, lblPuffs, lblPuffsWon;
+	JLabel lblDie, lblDie_1, lblDie_2, lblPuffs, lblPuffsWon, label;
 	Character c;
 	DefaultListModel listModel;
 	JList list;
@@ -38,13 +39,15 @@ public class Shop_Panel extends JPanel {
 		setLayout(new GridLayout(1, 0, 0, 0));
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(0, 0, 0));
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		add(panel);
+		// add(panel);
 		panel.setLayout(null);
 
-		JLabel lblAttacks = new JLabel("Attacks");
+		JLabel lblAttacks = new JLabel("Purchase Attacks");
+		lblAttacks.setForeground(Color.WHITE);
 		lblAttacks.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAttacks.setBounds(0, 110, 250, 16);
+		lblAttacks.setBounds(118, 110, 250, 16);
 		panel.add(lblAttacks);
 
 		JButton button_2 = new JButton("Buy" + "");
@@ -67,78 +70,98 @@ public class Shop_Panel extends JPanel {
 				}
 			}
 		});
-		button_2.setBounds(66, 393, 117, 29);
+		button_2.setBounds(185, 366, 117, 29);
 		panel.add(button_2);
 
 		listModel = new DefaultListModel();
 
 		list = new JList(listModel);
+		list.setBorder(null);
+		list.setBackground(Color.WHITE);
+		list.setForeground(Color.BLACK);
 		list.setBounds(63, 148, 117, 179);
-//		panel.add(list);
+		// panel.add(list);
 
 		JLabel lblCost = new JLabel("Cost: 100");
+		lblCost.setForeground(Color.WHITE);
 		lblCost.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCost.setBounds(0, 365, 250, 16);
+		lblCost.setBounds(118, 338, 250, 16);
 		panel.add(lblCost);
 
 		lblPuffs = new JLabel("Puffs:");
+		lblPuffs.setForeground(Color.WHITE);
 		lblPuffs.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuffs.setBounds(0, 70, 250, 16);
+		lblPuffs.setBounds(118, 72, 250, 16);
 		panel.add(lblPuffs);
 		lblPuffs.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(list);
-		scrollPane.setBounds(18, 148, 214, 179);
+		scrollPane.setBounds(133, 138, 214, 179);
 		panel.add(scrollPane);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("PUFF MART");
-		lblNewLabel_1.setFont(new Font("Euphemia UCAS", Font.PLAIN, 20));
+		lblNewLabel_1.setForeground(Color.CYAN);
+		lblNewLabel_1.setFont(new Font("Mishafi Gold", Font.PLAIN, 23));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(0, 0, 250, 50);
+		lblNewLabel_1.setBounds(118, 23, 250, 50);
 		panel.add(lblNewLabel_1);
 
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.add(panel);
+		add(tabbedPane);
+
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.ORANGE);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		add(panel_1);
+		// add(panel_1);
 		panel_1.setLayout(null);
 
 		JButton btnGamble = new JButton("Gamble");
-		btnGamble.setBounds(66, 393, 117, 29);
+		btnGamble.setBounds(181, 366, 117, 29);
 		btnGamble.addActionListener(new ButtonListener());
 		panel_1.add(btnGamble);
 
 		lblDie = new JLabel("Die 1:");
 		lblDie.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDie.setBounds(6, 137, 238, 16);
+		lblDie.setBounds(6, 220, 162, 16);
 		panel_1.add(lblDie);
 
 		lblDie_1 = new JLabel("Die 2:");
 		lblDie_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDie_1.setBounds(6, 190, 238, 16);
+		lblDie_1.setBounds(160, 220, 162, 16);
 		panel_1.add(lblDie_1);
 
 		lblDie_2 = new JLabel("Die 3:");
 		lblDie_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDie_2.setBounds(6, 242, 238, 16);
+		lblDie_2.setBounds(317, 220, 162, 16);
 		panel_1.add(lblDie_2);
 
 		lblPuffsWon = new JLabel("Puffs Won:");
 		lblPuffsWon.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPuffsWon.setBounds(6, 338, 238, 16);
+		lblPuffsWon.setBounds(120, 293, 238, 16);
 		panel_1.add(lblPuffsWon);
-		
-		JLabel lblNewLabel = new JLabel("Puff-o-matic");
-		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+
+		JLabel lblNewLabel = new JLabel("PUFF-O-MATIC");
+		lblNewLabel.setFont(new Font("Yuppy SC", Font.PLAIN, 23));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(66, 70, 117, 16);
+		lblNewLabel.setBounds(120, 57, 238, 33);
 		panel_1.add(lblNewLabel);
+		tabbedPane.add(panel_1);
+
+		label = new JLabel("Puffs: " + c.getPuffs());
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.BLACK);
+		label.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		label.setBounds(114, 147, 250, 16);
+		panel_1.add(label);
 
 		updateLabels(new int[] { 0, 0, 0 }, 0);
 	}
 
 	public void updateShop_panel() {
 		lblPuffs.setText("Puffs: " + c.getPuffs());
+		label.setText("Puffs: " + c.getPuffs());
 	}
 
 	private void updateLabels(int[] rolls, int puffs_won) {
@@ -148,6 +171,7 @@ public class Shop_Panel extends JPanel {
 		lblDie_2.setText(String.valueOf("Die 3: " + rolls[2]));
 		lblPuffsWon.setText("Puffs Won: " + puffs_won);
 		lblPuffs.setText("Puffs: " + c.getPuffs());
+		label.setText("Puffs: " + c.getPuffs());
 		listModel.clear();
 		for (String s : c.getAllAttacks()) {
 			if (!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
@@ -166,11 +190,11 @@ public class Shop_Panel extends JPanel {
 				int puffs_won = 0;
 				Arrays.sort(rolls);
 				if (rolls[0] == rolls[1] && rolls[0] == rolls[2])
-					puffs_won = 75;
+					puffs_won = 30;
 				else if (rolls[0] == rolls[1] - 1 && rolls[1] == rolls[2] - 1)
-					puffs_won = 50;
-				else if (rolls[0] == rolls[1] || rolls[1] == rolls[2] || rolls[2] == rolls[0])
 					puffs_won = 25;
+				else if (rolls[0] == rolls[1] || rolls[1] == rolls[2] || rolls[2] == rolls[0])
+					puffs_won = 15;
 				c.setPuffs(c.getPuffs() + puffs_won);
 				updateLabels(rolls, puffs_won);
 			}
