@@ -92,13 +92,13 @@ public class Battle_Panel extends JPanel {
 		display.add(progressBar_1);
 
 		JLabel character_img = new JLabel("");
-		ImageIcon image = new ImageIcon("images/TheDinosaur.png");
+		ImageIcon image = new ImageIcon(getClass().getResource("/TheDinosaur.png"));
 		character_img.setIcon(image);
 		character_img.setBounds(81, 73, 78, 108);
 		display.add(character_img);
 
 		enemy_img = new JLabel("");
-		ImageIcon ene_image = new ImageIcon("images/Celina.png");
+		ImageIcon ene_image = new ImageIcon(getClass().getResource("/Celina.png"));
 		enemy_img.setIcon(ene_image);
 		enemy_img.setBounds(339, 73, 78, 108);
 		display.add(enemy_img);
@@ -222,7 +222,7 @@ public class Battle_Panel extends JPanel {
 		if (battle_controller.getCurrentLevel() == battle_controller.LEVELS) {
 			System.out.println("we gettin a bossman");
 			next_villain = battle_controller.getBoss(c);
-			enemy_img.setIcon(new ImageIcon("images/Puffs.png"));
+			enemy_img.setIcon(new ImageIcon(getClass().getResource("/Puffs.png")));
 		} else {
 			System.out.println("we gettin a regular guy");
 			next_villain = battle_controller.getVillain(c);

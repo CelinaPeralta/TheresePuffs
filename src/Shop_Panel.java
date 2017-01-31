@@ -205,9 +205,9 @@ public class Shop_Panel extends JPanel {
 		
 		
 		
-		d1 = new ImageIcon("images/"+dice[rolls[0]]);
-		d2 = new ImageIcon("images/"+dice[rolls[1]]);
-		d3 = new ImageIcon("images/"+dice[rolls[2]]);
+		d1 = new ImageIcon(getClass().getResource("/"+dice[rolls[0]]));
+		d2 = new ImageIcon(getClass().getResource("/"+dice[rolls[1]]));
+		d3 = new ImageIcon(getClass().getResource("/"+dice[rolls[2]]));
 		
 		
 		die1icon.setIcon(d1);

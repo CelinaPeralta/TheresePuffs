@@ -30,7 +30,7 @@ public class Main_Panel extends JPanel {
 
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setBounds(0, 145, 500, 185);
-		ImageIcon i = new ImageIcon("images/Jay-theCoverphoto.png");
+		ImageIcon i = new ImageIcon(getClass().getResource("/Jay-theCoverphoto.png"));
 		lblNewLabel.setIcon(i);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblNewLabel);
