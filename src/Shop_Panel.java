@@ -72,7 +72,7 @@ public class Shop_Panel extends JPanel {
 				}
 			}
 		});
-		button_2.setBounds(185, 366, 117, 29);
+		button_2.setBounds(185, 291, 117, 29);
 		panel.add(button_2);
 
 		listModel = new DefaultListModel();
@@ -87,7 +87,7 @@ public class Shop_Panel extends JPanel {
 		JLabel lblCost = new JLabel("Cost: 100");
 		lblCost.setForeground(Color.WHITE);
 		lblCost.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCost.setBounds(118, 338, 250, 16);
+		lblCost.setBounds(118, 263, 250, 16);
 		panel.add(lblCost);
 
 		lblPuffs = new JLabel("Puffs:");
@@ -99,7 +99,7 @@ public class Shop_Panel extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(list);
-		scrollPane.setBounds(133, 138, 214, 179);
+		scrollPane.setBounds(133, 138, 214, 109);
 		panel.add(scrollPane);
 
 		JLabel lblNewLabel_1 = new JLabel("PUFF MART");
@@ -111,6 +111,24 @@ public class Shop_Panel extends JPanel {
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.add(panel);
+		
+		JLabel lblPurchaseAttributePoints = new JLabel("Purchase Attribute Point: 25 Puffs");
+		lblPurchaseAttributePoints.setForeground(Color.WHITE);
+		lblPurchaseAttributePoints.setBounds(69, 370, 212, 16);
+		panel.add(lblPurchaseAttributePoints);
+		
+		JButton btnBuyAttPoint = new JButton("Buy");
+		btnBuyAttPoint.setBounds(293, 365, 117, 29);
+		btnBuyAttPoint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (c.getPuffs() >= 25) {
+					c.setPuffs(c.getPuffs()-25);
+					c.setAtt_points(c.getAtt_points()+1);
+					lblPuffs.setText("Puffs: "+c.getPuffs());
+				}
+			}
+		});
+		panel.add(btnBuyAttPoint);
 		add(tabbedPane);
 
 		JPanel panel_1 = new JPanel();
@@ -200,7 +218,7 @@ public class Shop_Panel extends JPanel {
 		
 		lblPuffsWon.setText("Puffs Won: " + puffs_won);
 		lblPuffs.setText("Puffs: " + c.getPuffs());
-		label.setText("Puffs: " + c.getPuffs());
+		label.setText("Puff: " + c.getPuffs());
 		listModel.clear();
 		for (String s : c.getAllAttacks()) {
 			if (!c.getPurchasedAttacks().contains(s) && !listModel.contains(s))
